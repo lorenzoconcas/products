@@ -282,43 +282,7 @@ https://example.com/tua-sorgente-autorizzata.m3u8</pre>
       <p class="note">Ultimo aggiornamento: Mercoledì, 3 Settembre 2025</p>
     </section>
 
-    <br />
-
-    <section class="card">
-      <span class="note">
-        E' possibile trovare su internet liste pubbliche degli stream di canali italiani
-      </span>
-      <br />
-      <span class="note">
-        Qui è disponibile una versione di esempio, scaricabile sul dispositivo e caricabile nell'app (oppure è possibile
-        incollare il link dentro le playlist remote in modo da averle sempre aggiornate)
-      </span>
-      <br />
-      <br />
-      <div class="actions">
-        <button class="btn" type="button" onclick="openView()" aria-label="Apri CanaliItaliani.json">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path
-              d="M12 5C5 5 2 12 2 12s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
-          </svg>
-          <span>Vedi</span>
-        </button>
-        <button class="btn" type="button" onclick="saveFile()" aria-label="Scarica CanaliItaliani.json">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z" />
-          </svg>
-          <span>Salva</span>
-        </button>
-        <button class="btn" type="button" onclick="copyLink()" aria-label="Copia link CanaliItaliani.json">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path
-              d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z" />
-          </svg>
-          <span>Copia link</span>
-        </button>
-      </div>
-    </section>
-
+  
     <footer>
       <p>© 2024 - <span id="y"></span> MiniTV. Tutti i marchi appartengono ai rispettivi proprietari.</p>
     </footer>
@@ -328,52 +292,6 @@ https://example.com/tua-sorgente-autorizzata.m3u8</pre>
     // Aggiorna l'anno nel footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Percorso del file JSON relativo alla pagina
-    const FILE_PATH = 'CanaliItaliani.json';
-
-    // Scarica forzatamente il file usando fetch + blob (funziona su Pages)
-    async function saveFile() {
-      try {
-        const res = await fetch(FILE_PATH, { cache: 'no-store' });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'CanaliItaliani.json';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-      } catch (err) {
-        console.error(err);
-        alert('Impossibile scaricare il file in questo momento. Riprova più tardi.');
-      }
-    }
-
-    // Copia negli appunti l'URL assoluto del file
-    async function copyLink() {
-      const absolute = new URL(FILE_PATH, location.href).toString();
-      try {
-        await navigator.clipboard.writeText(absolute);
-        alert('Link copiato negli appunti.');
-      } catch {
-        // Fallback per browser più vecchi
-        const input = document.createElement('input');
-        input.value = absolute;
-        document.body.appendChild(input);
-        input.select();
-        document.execCommand('copy');
-        input.remove();
-        alert('Link copiato negli appunti.');
-      }
-    }
-
-    // Apre il file JSON in una nuova scheda
-    function openView() {
-      const absolute = new URL(FILE_PATH, location.href).toString();
-      window.open(absolute, '_blank', 'noopener,noreferrer');
-    }
   </script>
 </body>
 
