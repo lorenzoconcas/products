@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "title": "Canali Italiani - Regionali",
+  "entries": [
+    {
+      "name": "Videolina",
+      "url": "https://7e1cc2454f2242afabe05cc0a2f483cd.msvdn.net/videolina/videolina_live/videolina_live/video.m3u8",
+      "group": "Regionali",
+      "logoURL": "https://www.videolina.it/Content/images/logo_12.png",
+      "audioURL": "https://streamcdnr7-7e1cc2454f2242afabe05cc0a2f483cd.msvdn.net/videolina/videolina_live/videolina_live/audio.m3u8"
+    }
+  ]
+}

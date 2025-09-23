@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "title": "Canali Italiani - Discovery",
+  "entries": [
+    {
+      "name": "NOVE",
+      "url": "https://amg16146-wbdi-amg16146c1-samsung-it-1831.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-nove-samsungit/playlist.m3u8",
+      "group": "Discovery"
+    },
+    {
+      "name": "Real Time",
+      "url": "https://amg16146-wbdi-amg16146c2-samsung-it-1835.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-realtime-samsungit/playlist.m3u8",
+      "group": "Discovery"
+    },
+    {
+      "name": "Food Network",
+      "url": "https://amg16146-wbdi-amg16146c3-samsung-it-1836.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-foodnetwork-samsungit/playlist.m3u8",
+      "group": "Discovery"
+    },
+    {
+      "name": "Warner TV",
+      "url": "https://amg16146-wbdi-amg16146c4-samsung-it-1837.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-warnertv-samsungit/playlist.m3u8",
+      "group": "Discovery"
+    },
+    {
+      "name": "Giallo",
+      "url": "https://amg16146-wbdi-amg16146c5-samsung-it-1838.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-giallo-samsungit/playlist.m3u8",
+      "group": "Discovery"
+    },
+    {
+      "name": "K2",
+      "url": "https://amg16146-wbdi-amg16146c6-samsung-it-1839.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-k2-samsungit/playlist.m3u8",
+      "group": "Discovery"
+    },
+    {
+      "name": "Frisbee",
+      "url": "https://amg16146-wbdi-amg16146c7-samsung-it-1840.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-frisbee-samsungit/playlist.m3u8",
+      "group": "Discovery"
+    },
+    {
+      "name": "DMAX",
+      "url": "https://amg16146-wbdi-amg16146c8-samsung-it-1841.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-dmax-samsungit/playlist.m3u8",
+      "group": "Discovery"
+    },
+    {
+      "name": "HGTV - Home&Garden",
+      "url": "https://amg16146-wbdi-amg16146c9-samsung-it-1842.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-hgtv-samsungit/playlist.m3u8",
+      "group": "Discovery"
+    },
+    {
+      "name": "Motor Trend",
+      "url": "https://amg16146-wbdi-amg16146c10-samsung-it-1843.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-motortrend-samsungit/playlist.m3u8",
+      "group": "Discovery"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "title": "Canali Italiani - Mediaset",
+  "entries": [
+    {
+      "name": "Rete 4",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-r4/r4-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "Canale 5",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-c5/c5-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "Italia 1",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-i1/i1-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "20 Mediaset",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-lb/lb-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "Iris",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-ki/ki-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "27 Twentyseven",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-ts/ts-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "La5",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-ka/ka-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "Cine34",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-b6/b6-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "Focus",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-fu/fu-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "Top Crime",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-lt/lt-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "Boing",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-kb/kb-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "Cartoonito",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-la/la-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "Italia 2",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-i2/i2-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "TGcom24",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-kf/kf-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    },
+    {
+      "name": "Mediaset Extra",
+      "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-kq/kq-clr.isml/manifest.mpd",
+      "group": "Mediaset"
+    }
+  ]
+}

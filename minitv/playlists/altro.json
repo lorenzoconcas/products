@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "title": "Canali Italiani - Altro",
+  "entries": [
+    {
+      "name": "LA7",
+      "url": "https://d3749synfikwkv.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-74ylxpgd78bpb/Live.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "TV2000",
+      "url": "https://hls-live-tv2000.akamaized.net/hls/live/2028510/tv2000/master.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "LA7d",
+      "url": "https://d15umi5iaezxgx.cloudfront.net/LA7D/CLN/HLS/Live.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "QVC",
+      "url": "https://qrg.akamaized.net/hls/live/2017383/lsqvc1it/master.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "Super!",
+      "url": "https://vimnitaly.akamaized.net/hls/live/2094034/super/master.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "Casa Italia 53",
+      "url": "https://liveac115.b-cdn.net/canale3.smil/playlist.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "Sportitalia",
+      "url": "https://sportitaliaamd.akamaized.net/live/Sportitalia/hls/F59D8EB0332E783633CDDE8E265844975635D24F/index.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "Travel TV",
+      "url": "https://traveltv.grupposciscione.knoxstreaming.com/live/masterpl.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "Donna TV",
+      "url": "https://donnatv.grupposciscione.knoxstreaming.com/live/masterpl.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "SuperTennis",
+      "url": "https://live-embed.supertennix.hiway.media/restreamer/supertennix_client/gpu-a-c0-16/restreamer/rtmp/hls/h24_supertennix/manifest.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "ALMA TV",
+      "url": "https://almatv.grupposciscione.knoxstreaming.com/live/masterpl.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "BOM Channel",
+      "url": "https://5f22d76e220e1.streamlock.net/canale6/canale6/playlist.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "Canale Italia",
+      "url": "https://liveac115.b-cdn.net/canale1.smil/playlist.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "Odeon 24",
+      "url": "https://odeon.grupposciscione.knoxstreaming.com/live/masterpl.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "Orler TV",
+      "url": "https://w1.mediastreaming.it/orlertv/livestream/playlist.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "TCI",
+      "url": "https://tbn-jw.cdn.vustreams.com/live/tci/live.isml/2b7d53c5-b504-4d26-b25f-a70deb8d0faf.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "BIKE",
+      "url": "https://66286fdeb96da.streamlock.net/BikeChannel/Bikechannel/playlist.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "Byoblu",
+      "url": "https://09bd1346f7a44cc9ac230cc1cb22ca4f.msvdn.net/live/S39249178/EnTK3KeeN1Eg/playlist.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "Business24",
+      "url": "http://fms.premio.link/business24/index.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "DolomitiLifeTV",
+      "url": "https://fms.premio.link/dolomitilifetv/playlist.m3u8",
+      "group": "Altro"
+    },
+    {
+      "name": "SuperSix",
+      "url": "https://5db313b643fd8.streamlock.net/SUPERSIXLombardia/SUPERSIXLombardia/playlist.m3u8",
+      "group": "Altro"
+    }
+  ]
+}

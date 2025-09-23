@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MiniTV – App iOS e macOS</title>
+    <meta name="description"
+        content="MiniTV è un lettore IPTV leggero per iOS e macOS. Importa le tue playlist M3U/M3U8 e guarda i tuoi canali con un'interfaccia pulita e veloce." />
+    <meta property="og:title" content="MiniTV – App iOS e macOS" />
+    <meta property="og:description"
+        content="Lettore IPTV leggero per iOS e macOS. Importa le tue playlist e guarda i tuoi canali con un'interfaccia pulita e veloce." />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="stylesheet" href="/common.css" />
+    <style>
+        #channels {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .channel {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            align-items: center;
+            justify-content: space-between;
+
+            .logo {
+                display: flex;
+                flex-direction: row;
+                gap: 8px;
+                align-items: center;
+
+                justify-content: flex-start;
+
+                img {
+                    width: 64px;
+                }
+
+            }
+
+            .actions {
+                margin-top: 0 !important;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <img src="../icon.png" style="width: 128px; border-radius: 32px;" />
+            <h1>MiniTV – Lettore IPTV per iOS</h1>
+            <p class="lead">Qui sono disponibili delle playlist di esempio con canali italiani</p>
+        </header>
+
+
+        <div id="channels"></div>
+
+        <footer>
+            <p>© 2024 - <span id="y"></span> MiniTV. Tutti i marchi appartengono ai rispettivi proprietari.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Aggiorna l'anno nel footer
+        document.getElementById('y').textContent = new Date().getFullYear();
+
+
+        // Lista gruppi da mostrare (puoi anche caricarla da un index.json)
+        const groups = [
+            { name: "Rai", file: "rai.json", logo: "rai.png" },
+            { name: "Mediaset", file: "mediaset.json", logo: "mediaset.png" },
+            { name: "Radio", file: "radio.json", logo: "radio.png" },
+            { name: "Sky", file: "sky.json", logo: "sky.png" },
+            { name: "Altro", file: "altro.json", logo: "altro.png" }
+        ];
+
+        const container = document.getElementById("channels");
+
+        groups.forEach(g => {
+            const section = document.createElement("section");
+            section.className = "card channel";
+
+            section.innerHTML = `
+        <div class="logo">
+            <img src="${g.logo}" alt="${g.name}" />
+            <span>${g.name}</span>
+        </div>
+        <div class="actions">
+          <button class="btn" type="button" onclick="openView('${g.file}')" aria-label="Apri ${g.file}">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 5C5 5 2 12 2 12s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+            </svg>
+            <span>Vedi</span>
+          </button>
+          <button class="btn" type="button" onclick="saveFile('${g.file}')" aria-label="Scarica ${g.file}">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z"/>
+            </svg>
+            <span>Salva</span>
+          </button>
+          <button class="btn" type="button" onclick="copyLink('${g.file}')" aria-label="Copia link ${g.file}">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M16 1H4a2 2 0 0 0-2 2v12h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/>
+            </svg>
+            <span>Copia link</span>
+          </button>
+        </div>
+      `;
+
+            container.appendChild(section);
+        });
+
+        // Scarica forzatamente il file usando fetch + blob (funziona su Pages)
+        async function saveFile(path) {
+            try {
+                const res = await fetch(path, { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const blob = await res.blob();
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'CanaliItaliani.json';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            } catch (err) {
+                console.error(err);
+                alert('Impossibile scaricare il file in questo momento. Riprova più tardi.');
+            }
+        }
+
+        // Copia negli appunti l'URL assoluto del file
+        async function copyLink(path) {
+            const absolute = new URL(path, location.href).toString();
+            try {
+                await navigator.clipboard.writeText(absolute);
+                alert('Link copiato negli appunti.');
+            } catch {
+                // Fallback per browser più vecchi
+                const input = document.createElement('input');
+                input.value = absolute;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                input.remove();
+                alert('Link copiato negli appunti.');
+            }
+        }
+
+        // Apre il file JSON in una nuova scheda
+        function openView(path) {
+            const absolute = new URL(path, location.href).toString();
+            window.open(absolute, '_blank', 'noopener,noreferrer');
+        }
+    </script>
+</body>
+
+</html>

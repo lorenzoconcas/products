@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "title": "Canali Italiani - Rai",
+  "entries": [
+    {
+      "name": "Rai 1",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=2606803&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai 2",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai 3",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308709&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai 4",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746966&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai 5",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=395276&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai Movie",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=747002&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai Premium",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746992&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai Gulp",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746953&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai Yoyo",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746899&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai News 24",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=1&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai Storia",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746990&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai Scuola",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=747011&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai Sport + HD",
+      "url": "http://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=358025&output=7&forceUserAgent=raiplayappletv",
+      "group": "Rai"
+    },
+    {
+      "name": "Rai 4K (HbbTV)",
+      "url": "https://raievent10-elem-live.akamaized.net/hls/live/619189/raievent10/raievent10/playlist.m3u8",
+      "group": "Rai"
+    }
+  ]
+}
