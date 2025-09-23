@@ -46,6 +46,17 @@
 
 
         }
+
+        .imgbtn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 48px;
+            }
+        }
     </style>
 </head>
 
@@ -110,6 +121,10 @@
             </svg>
             <span>Copia link</span>
           </button>
+          <button class="btn imgbtn" type="button" onclick="openInMiniTV('${g.file}')" aria-label="Apri in MiniTV ${g.file}">
+           <img src="minitv.svg" />
+            <span>Apri in MiniTV</span>
+          </button>
         </div>
       `;
 
@@ -158,6 +173,14 @@
         function openView(path) {
             const absolute = new URL(path, location.href).toString();
             window.open(absolute, '_blank', 'noopener,noreferrer');
+        }
+
+        // Apre il file JSON in MiniTV tramite URL personalizzato
+        function openInMiniTV(path) {
+            const absolute = new URL(path, location.href).toString();
+            const encoded = encodeURIComponent(absolute);
+            const url = `minitv://url=${encoded}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
         }
     </script>
 </body>
