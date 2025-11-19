@@ -178,7 +178,7 @@ https://example.com/tua-sorgente-autorizzata.m3u8</pre>
     }
 
     function openMiniTVWeb() {
-      const absolute = new URL("/minitv_web", location.href).toString();
+      const absolute = new URL("web", location.href).toString();
       window.open(absolute);
     }
   </script>
