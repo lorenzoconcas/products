@@ -69,6 +69,16 @@
 
       </div>
 
+      <div class="actions">
+        <button class="btn" type="button" onclick="openMiniTVWeb()" aria-label="Apri MiniTV Online">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M12 5C5 5 2 12 2 12s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+          </svg>
+          <span>Prova la versione online (non tutte le sorgenti sono supportate)</span>
+        </button>
+      </div>
+
       <p class="note">Nota: l'app non include canali preinstallati. Usa solo sorgenti di cui possiedi i diritti di
         visione/redistribuzione.</p>
 
@@ -164,6 +174,11 @@ https://example.com/tua-sorgente-autorizzata.m3u8</pre>
 
     function openView() {
       const absolute = new URL("playlists", location.href).toString();
+      window.open(absolute);
+    }
+
+    function openMiniTVWeb() {
+      const absolute = new URL("/minitv_web", location.href).toString();
       window.open(absolute);
     }
   </script>
