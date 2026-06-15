@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Village Status</title>
+    <title>Stato del villaggio</title>
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src * data: blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval'; img-src * data: blob:;"
@@ -551,6 +551,10 @@
 
     <script>
       (function () {
+        const ENTITY_MAPPING_GIST_SCRIPT_URL =
+          "https://gist.github.com/pghant/0717bb1e0e4e0d1373e90bdb3057d9dd.js";
+        const ENTITY_MAPPING_RAW_URL =
+          "https://gist.githubusercontent.com/pghant/0717bb1e0e4e0d1373e90bdb3057d9dd/raw/b8792f7d14404068f47570f4a78db7048893bfac/cocMapping.json";
         const SECTION_DEFINITIONS = {
           helpers: { title: "Helper", type: "object-array" },
           buildings: { title: "Edifici Villaggio Principale", type: "object-array" },
@@ -634,6 +638,8 @@
         const tabPanels = document.getElementById("tabPanels");
         const printButton = document.getElementById("printButton");
         let parsedStatus = null;
+        let entityMappingPromise = null;
+        let entityNameById = new Map();
 
         function escapeHtml(value) {
           return String(value ?? "")
@@ -666,6 +672,127 @@
           if (minutes || !parts.length) parts.push(`${minutes}m`);
 
           return parts.join(" ");
+        }
+
+        function normalizeEntityMappingEntries(entries) {
+          if (!Array.isArray(entries)) return [];
+
+          return entries
+            .map((entry) => {
+              if (!entry || typeof entry !== "object") return null;
+
+              const dataId = Number(entry.dataId);
+              const name = String(entry.name || "").trim();
+
+              if (!Number.isFinite(dataId) || !name) return null;
+
+              return { dataId, name };
+            })
+            .filter(Boolean);
+        }
+
+        function buildEntityNameMap(entries) {
+          return new Map(
+            normalizeEntityMappingEntries(entries).map((entry) => [String(entry.dataId), entry.name]),
+          );
+        }
+
+        function extractJsonArrayFromText(rawText) {
+          const text = String(rawText || "").trim();
+          const startIndex = text.indexOf("[");
+          const endIndex = text.lastIndexOf("]");
+
+          if (startIndex === -1 || endIndex === -1 || endIndex <= startIndex) {
+            throw new Error("JSON array non trovato nel contenuto del gist.");
+          }
+
+          return text.slice(startIndex, endIndex + 1);
+        }
+
+        function loadEntityMappingFromGistScript() {
+          return new Promise((resolve, reject) => {
+            const frame = document.createElement("iframe");
+            const cleanup = () => {
+              window.clearTimeout(timeoutId);
+              frame.remove();
+            };
+            const parseFrame = () => {
+              try {
+                const frameDocument = frame.contentDocument;
+                const rawText = frameDocument?.body?.innerText || frameDocument?.documentElement?.innerText || "";
+                const jsonText = extractJsonArrayFromText(rawText);
+                const entries = JSON.parse(jsonText);
+                cleanup();
+                resolve(buildEntityNameMap(entries));
+              } catch (error) {
+                cleanup();
+                reject(error);
+              }
+            };
+            const timeoutId = window.setTimeout(() => {
+              cleanup();
+              reject(new Error("Timeout caricamento script gist mapping."));
+            }, 12000);
+
+            frame.setAttribute("aria-hidden", "true");
+            frame.tabIndex = -1;
+            frame.style.position = "absolute";
+            frame.style.width = "0";
+            frame.style.height = "0";
+            frame.style.border = "0";
+            frame.style.opacity = "0";
+            frame.style.pointerEvents = "none";
+            frame.style.left = "-9999px";
+            frame.onload = () => {
+              window.setTimeout(parseFrame, 250);
+            };
+            frame.srcdoc = `<!doctype html><html><head><meta charset="utf-8" /></head><body><script src="${ENTITY_MAPPING_GIST_SCRIPT_URL}"></script></body></html>`;
+
+            document.body.appendChild(frame);
+          });
+        }
+
+        async function loadEntityMappingFromRaw() {
+          const response = await fetch(ENTITY_MAPPING_RAW_URL, {
+            cache: "force-cache",
+            mode: "cors",
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+
+          const entries = await response.json();
+          return buildEntityNameMap(entries);
+        }
+
+        function ensureEntityMappingLoaded() {
+          if (entityMappingPromise) return entityMappingPromise;
+
+          entityMappingPromise = (async () => {
+            try {
+              entityNameById = await loadEntityMappingFromGistScript();
+              return entityNameById;
+            } catch (gistError) {
+              console.warn("Mapping gist non disponibile, provo il raw fallback:", gistError);
+
+              try {
+                entityNameById = await loadEntityMappingFromRaw();
+                return entityNameById;
+              } catch (rawError) {
+                console.error("Impossibile caricare il mapping entità:", rawError);
+                entityNameById = new Map();
+                return entityNameById;
+              }
+            }
+          })();
+
+          return entityMappingPromise;
+        }
+
+        function getEntityName(value) {
+          if (value == null) return "";
+          return entityNameById.get(String(value)) || "";
         }
 
         function setStatus(message, tone) {
@@ -823,7 +950,8 @@
             .join("");
         }
 
-        function renderObjectItemCard(item) {
+        function renderObjectItemCard(item, sectionKey) {
+          const resolvedName = getEntityName(item.data);
           const dataId = item.data != null ? `ID ${item.data}` : "Record";
           const badgeTokens = [];
           const metaTokens = [];
@@ -848,12 +976,20 @@
             );
           });
 
+          if (item.data != null) {
+            metaTokens.unshift(
+              `<span class="meta-chip">dataId: <strong>${escapeHtml(item.data)}</strong></span>`,
+            );
+          }
+
           return `
             <article class="item-card">
               <div class="item-top">
                 <div>
-                  <h3 class="item-title">${escapeHtml(dataId)}</h3>
-                  <div class="item-subtitle">Record generico dal dump JSON</div>
+                  <h3 class="item-title">${escapeHtml(resolvedName || dataId)}</h3>
+                  <div class="item-subtitle">${escapeHtml(
+                    resolvedName ? `${SECTION_DEFINITIONS[sectionKey].title} · ${dataId}` : `Record generico dal dump JSON · ${dataId}`,
+                  )}</div>
                 </div>
                 <div class="badge-row">${badgeTokens.join("")}</div>
               </div>
@@ -863,12 +999,16 @@
         }
 
         function renderNumberItemCard(value, index) {
+          const resolvedName = getEntityName(value);
+
           return `
             <article class="item-card">
               <div class="item-top">
                 <div>
-                  <h3 class="item-title">ID ${escapeHtml(value)}</h3>
-                  <div class="item-subtitle">Elemento collezione #${index + 1}</div>
+                  <h3 class="item-title">${escapeHtml(resolvedName || `ID ${value}`)}</h3>
+                  <div class="item-subtitle">${escapeHtml(
+                    resolvedName ? `Elemento collezione #${index + 1} · ID ${value}` : `Elemento collezione #${index + 1}`,
+                  )}</div>
                 </div>
               </div>
             </article>
@@ -908,7 +1048,9 @@
           let content = `<div class="empty-state">Nessun dato disponibile in questa sezione.</div>`;
 
           if (definition.type === "object-array" && Array.isArray(value) && value.length) {
-            content = `<div class="item-grid">${value.map(renderObjectItemCard).join("")}</div>`;
+            content = `<div class="item-grid">${value
+              .map((item) => renderObjectItemCard(item, sectionKey))
+              .join("")}</div>`;
           } else if (definition.type === "number-array" && Array.isArray(value) && value.length) {
             content = `<div class="item-grid">${value
               .map((item, index) => renderNumberItemCard(item, index))
@@ -939,8 +1081,12 @@
                     <article class="item-card">
                       <div class="item-top">
                         <div>
-                          <h3 class="item-title">${escapeHtml(item.section)}</h3>
-                          <div class="item-subtitle">ID ${escapeHtml(item.dataId ?? "N/D")}</div>
+                          <h3 class="item-title">${escapeHtml(getEntityName(item.dataId) || item.section)}</h3>
+                          <div class="item-subtitle">${escapeHtml(
+                            getEntityName(item.dataId)
+                              ? `${item.section} · ID ${item.dataId ?? "N/D"}`
+                              : `ID ${item.dataId ?? "N/D"}`,
+                          )}</div>
                         </div>
                         <div class="badge-row">
                           ${item.level != null ? `<span class="badge">Lv ${escapeHtml(item.level)}</span>` : ""}
@@ -1099,7 +1245,7 @@
           syncTelegramMainButton();
         }
 
-        function parseAndRender(rawText) {
+        async function parseAndRender(rawText) {
           const input = String(rawText || "").trim();
           if (!input) {
             setStatus("Incolla prima un JSON valido.", "error");
@@ -1113,6 +1259,8 @@
               throw new Error("Il contenuto non è un oggetto JSON valido.");
             }
 
+            setStatus("JSON letto. Carico il mapping entità...", null);
+            await ensureEntityMappingLoaded();
             renderStatusData(data);
           } catch (error) {
             console.error("Errore parsing village status:", error);
@@ -1134,7 +1282,7 @@
 
           try {
             const clipboardText = await navigator.clipboard.readText();
-            parseAndRender(clipboardText);
+            await parseAndRender(clipboardText);
           } catch (error) {
             console.error("Errore lettura clipboard:", error);
             setStatus(
@@ -1200,6 +1348,7 @@
 
         initTelegramWebApp();
         syncTelegramMainButton();
+        ensureEntityMappingLoaded();
       })();
     </script>
   </body>
