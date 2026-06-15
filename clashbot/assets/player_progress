@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{PAGE_TITLE}}</title>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * data: blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval'; img-src * data: blob:;"
+    />
+<script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+      :root {
+        --bg: #0f172a;
+        --panel: rgba(15, 23, 42, 0.84);
+        --panel-strong: rgba(15, 23, 42, 0.96);
+        --line: rgba(148, 163, 184, 0.2);
+        --text: #e5eef8;
+        --muted: #9fb0c9;
+        --gold: #f5c451;
+        --green: #34d399;
+        --blue: #60a5fa;
+        --red: #f87171;
+        --shadow: 0 20px 45px rgba(2, 6, 23, 0.42);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          linear-gradient(
+            180deg,
+            rgba(15, 23, 42, 0.62),
+            rgba(15, 23, 42, 0.92)
+          ),
+          url("{{BACKGROUND_IMAGE}}") center/cover fixed no-repeat,
+          var(--bg);
+      }
+
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 28px 20px 40px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(8px);
+      }
+
+      .profile {
+        padding: 26px;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 18px;
+        align-items: center;
+      }
+
+      .profile-visuals {
+        display: grid;
+        grid-template-columns: repeat(2, 108px);
+        grid-template-rows: repeat(2, 108px);
+        align-items: center;
+        justify-items: center;
+        gap: 14px;
+      }
+
+      .profile-badge {
+        width: 108px;
+        height: 108px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 12px;
+        object-fit: contain;
+      }
+
+      .profile-badge--townhall {
+        background:
+          radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 255, 255, 0.22),
+            transparent 40%
+          ),
+          rgba(255, 255, 255, 0.08);
+      }
+
+      .profile-badge--builderhall {
+        background:
+          radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 255, 255, 0.18),
+            transparent 40%
+          ),
+          rgba(255, 255, 255, 0.08);
+      }
+
+      .profile-badge--league {
+        background:
+          radial-gradient(
+            circle at 30% 25%,
+            rgba(255, 255, 255, 0.24),
+            transparent 40%
+          ),
+          rgba(255, 255, 255, 0.08);
+      }
+
+      .profile-badge--placeholder {
+        background: rgba(255, 255, 255, 0.02);
+        border-style: dashed;
+        opacity: 0.35;
+      }
+
+      .profile-badge-fallback {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        text-align: center;
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 1.05;
+        color: var(--text);
+      }
+
+      .eyebrow {
+        color: var(--gold);
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(34px, 5vw, 52px);
+        line-height: 0.95;
+      }
+
+      .subtitle {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 16px;
+      }
+
+      .tagline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .chip {
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 13px;
+        color: var(--text);
+      }
+
+      .summary {
+        padding: 22px;
+        display: grid;
+        gap: 14px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(96, 165, 250, 0.2),
+            rgba(52, 211, 153, 0.08)
+          ),
+          var(--panel-strong);
+      }
+
+      .summary h2,
+      .section h2 {
+        margin: 0 0 4px;
+        font-size: 20px;
+      }
+
+      .summary-grid,
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .mini-stat,
+      .stat {
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        min-width: 0;
+      }
+
+      .mini-stat-label,
+      .stat-label {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .mini-stat-label img,
+      .stat-label img {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+      }
+
+      .avatar-fallback {
+        width: 44px;
+        height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: linear-gradient(
+          135deg,
+          rgba(96, 165, 250, 0.35),
+          rgba(52, 211, 153, 0.28)
+        );
+        color: var(--text);
+        font-weight: 800;
+        font-size: 18px;
+        flex: 0 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .mini-stat-value,
+      .stat-value {
+        font-size: 24px;
+        margin-top: 8px;
+        font-weight: 700;
+      }
+
+      .stats-grid {
+        margin-top: 20px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .section {
+        margin-top: 20px;
+        padding: 22px;
+      }
+
+      .tabs-shell {
+        margin-top: 20px;
+        padding: 22px;
+      }
+
+      .tab-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .tab-button {
+        appearance: none;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-size: 13px;
+        cursor: pointer;
+        transition:
+          transform 160ms ease,
+          background 160ms ease,
+          border-color 160ms ease;
+      }
+
+      .tab-button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.18);
+      }
+
+      .tab-button.is-active {
+        background: linear-gradient(
+          135deg,
+          rgba(96, 165, 250, 0.26),
+          rgba(52, 211, 153, 0.18)
+        );
+        border-color: rgba(96, 165, 250, 0.45);
+      }
+
+      .tab-panel {
+        display: none;
+      }
+
+      .tab-panel.is-active {
+        display: block;
+      }
+
+      .tab-panel + .tab-panel {
+        margin-top: 28px;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: baseline;
+        margin-bottom: 14px;
+      }
+
+      .section-header p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .progress-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .equipment-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .equipment-groups {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .troop-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .troop-group {
+        width: 100%;
+      }
+
+      .equipment-group + .equipment-group {
+        margin-top: 0;
+      }
+
+      .equipment-group-title {
+        margin-bottom: 12px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--gold);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .progress-item {
+        padding: 0;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        display: grid;
+        grid-template-columns: 108px minmax(0, 1fr);
+        overflow: hidden;
+        min-height: 136px;
+      }
+
+      .progress-item--th-maxed {
+        border-color: rgba(34, 197, 94, 0.9);
+      /*   box-shadow:
+          inset 0 0 0 1px rgba(74, 222, 128, 0.22),
+          0 0 0 1px rgba(22, 163, 74, 0.28),
+          0 14px 28px rgba(3, 105, 39, 0.22); */
+        background:
+          linear-gradient(
+            180deg,
+            rgba(22, 163, 74, 0.12),
+            rgba(255, 255, 255, 0.045)
+          ),
+          rgba(255, 255, 255, 0.045);
+      }
+
+      .progress-visual {
+        min-height: 100%;
+        background: linear-gradient(
+          180deg,
+          rgba(96, 165, 250, 0.14),
+          rgba(52, 211, 153, 0.08)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .progress-item--th-maxed .progress-visual {
+        border-right-color: rgba(34, 197, 94, 0.35);
+        background: linear-gradient(
+          180deg,
+          rgba(34, 197, 94, 0.18),
+          rgba(52, 211, 153, 0.08)
+        );
+      }
+
+      .progress-item--th-maxed .bar {
+        background: rgba(20, 83, 45, 0.35);
+      }
+
+      .progress-item--th-maxed .bar > span {
+        background: linear-gradient(90deg, #22c55e, #86efac);
+        box-shadow: 0 0 14px rgba(74, 222, 128, 0.28);
+      }
+
+      .progress-item--th-maxed .progress-cap {
+        color: #bbf7d0;
+        font-weight: 600;
+      }
+
+      .progress-visual img,
+      .progress-visual .avatar-fallback {
+        width: 84px;
+        height: 84px;
+        border-radius: 18px;
+      }
+
+      .progress-visual img {
+        object-fit: contain;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 8px;
+      }
+
+      .progress-content {
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .progress-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        align-items: flex-start;
+      }
+
+      .progress-name {
+        min-width: 0;
+      }
+
+      .progress-name strong {
+        display: block;
+        font-size: 20px;
+        line-height: 1.1;
+      }
+
+      .progress-name span {
+        display: block;
+        margin-top: 4px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .progress-level {
+        font-size: 28px;
+        line-height: 1;
+        font-weight: 800;
+        color: var(--text);
+        white-space: nowrap;
+        letter-spacing: -0.03em;
+      }
+
+      .level-badge-wrap {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        min-width: 58px;
+      }
+
+      .dark-level-badge {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        position: relative;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .dark-level-badge::before {
+        content: none;
+      }
+
+      .dark-level-badge::after {
+        content: none;
+      }
+
+      .dark-level-badge span {
+        position: relative;
+        z-index: 1;
+        font-size: 18px;
+        line-height: 1;
+        font-weight: 900;
+        color: #f6f8fb;
+        width: 100%;
+        padding: 14px 0px 0px;
+        text-align: center;
+        text-shadow:
+          0 1px 0 rgba(0, 0, 0, 0.65),
+          0 0 3px rgba(0, 0, 0, 0.45);
+      }
+
+      .max-badge {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        position: relative;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        overflow: visible;
+      }
+
+      .max-badge span {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        line-height: 1;
+        font-weight: 900;
+        color: #2b2000;
+        padding: 14px 0px 0px;
+        text-shadow:
+          0 1px 0 rgba(255, 248, 196, 0.65),
+          0 0 3px rgba(255, 210, 78, 0.35);
+      }
+
+      .max-badge::before {
+        content: none;
+      }
+
+      .max-badge::after {
+        content: none;
+      }
+
+      .progress-cap {
+        color: var(--muted);
+        font-size: 13px;
+        text-align: right;
+      }
+
+      .bar {
+        width: 100%;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.09);
+        overflow: hidden;
+      }
+
+      .bar > span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--blue), var(--green));
+        width: 0;
+      }
+
+      .achievements {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .achievement {
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .achievement strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 15px;
+      }
+
+      .achievement p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .achievement .value {
+        margin-top: 8px;
+        color: var(--text);
+        font-size: 13px;
+      }
+
+      .footer {
+        margin-top: 18px;
+        color: rgba(229, 238, 248, 0.72);
+        text-align: right;
+        font-size: 12px;
+      }
+
+      @media (max-width: 980px) {
+        .hero,
+        .stats-grid,
+        .progress-grid,
+        .equipment-grid,
+        .troop-grid,
+        .achievements {
+          grid-template-columns: 1fr;
+        }
+
+        .profile {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .profile-visuals {
+          justify-content: center;
+        }
+
+        .profile-badge {
+          margin: 0;
+        }
+
+        .tagline {
+          justify-content: center;
+        }
+
+        .progress-item {
+          grid-template-columns: 88px minmax(0, 1fr);
+          min-height: 120px;
+        }
+
+        .progress-visual img,
+        .progress-visual .avatar-fallback {
+          width: 68px;
+          height: 68px;
+        }
+
+        .progress-top {
+          flex-direction: column;
+        }
+
+        .progress-level,
+        .progress-cap {
+          text-align: left;
+        }
+
+        .level-badge-wrap {
+          justify-content: flex-start;
+        }
+
+        .dark-level-badge,
+        .max-badge {
+          width: 44px;
+          height: 44px;
+        }
+
+        .dark-level-badge span {
+          font-size: 19px;
+        }
+
+        .max-badge span {
+          font-size: 19px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <article class="card profile">
+          {{PROFILE_VISUALS_BLOCK}}
+          <div>
+            <div class="eyebrow">Player Progress</div>
+            <h1>{{PLAYER_NAME}}</h1>
+            <div class="subtitle">{{PLAYER_TAG}} · {{CLAN_NAME}}</div>
+            <div class="tagline">
+              <span class="chip">{{ROLE}}</span>
+              <span class="chip">Town Hall {{TH_LEVEL}}</span>
+              <span class="chip">Builder Hall {{BH_LEVEL}}</span>
+              <span class="chip">{{LEAGUE_NAME}}</span>
+            </div>
+          </div>
+        </article>
+
+        <aside class="card summary">
+          <div class="section-header">
+            <h2>Panoramica</h2>
+            <p>{{LAST_UPDATED}}</p>
+          </div>
+          <div class="summary-grid">{{SUMMARY_STATS}}</div>
+        </aside>
+      </section>
+
+      <section class="stats-grid">{{TOP_STATS}}</section>
+
+      <section class="card tabs-shell">
+        <div class="section-header">
+          <h2>Dettaglio Progressione</h2>
+          <p></p>
+        </div>
+        {{PROGRESSION_TABS}}
+      </section>
+
+      <div class="footer">
+        Generato automaticamente dal bot Telegram Clash of Clans
+      </div>
+    </main>
+  <script>
+  (function () {
+    const PLACEHOLDER_KEYS = [
+      "PAGE_TITLE",
+      "BACKGROUND_IMAGE",
+      "PROFILE_VISUALS_BLOCK",
+      "PLAYER_NAME",
+      "PLAYER_TAG",
+      "CLAN_NAME",
+      "ROLE",
+      "TH_LEVEL",
+      "BH_LEVEL",
+      "LEAGUE_NAME",
+      "LAST_UPDATED",
+      "SUMMARY_STATS",
+      "TOP_STATS",
+      "PROGRESSION_TABS",
+    ];
+
+    const HTML_PLACEHOLDER_KEYS = new Set([
+      "PROFILE_VISUALS_BLOCK",
+      "SUMMARY_STATS",
+      "TOP_STATS",
+      "PROGRESSION_TABS",
+    ]);
+
+    function getHashParams() {
+      const rawHash = window.location.hash.replace(/^#/, "");
+      return new URLSearchParams(rawHash);
+    }
+
+    function getPageDataParam() {
+      const queryParams = new URLSearchParams(window.location.search);
+      const hashParams = getHashParams();
+
+      return (
+        hashParams.get("data") ||
+        queryParams.get("data") ||
+        hashParams.get("d") ||
+        queryParams.get("d")
+      );
+    }
+
+    function decodePageData(encoded) {
+      if (!encoded) return null;
+
+      const decoders = [
+        function decodeLzString(value) {
+          if (!window.LZString) return null;
+          return window.LZString.decompressFromEncodedURIComponent(value);
+        },
+        function decodeUrlEncoded(value) {
+          return decodeURIComponent(value);
+        },
+        function decodeBase64Url(value) {
+          const normalized = value.replace(/-/g, "+").replace(/_/g, "/");
+          const padded = normalized.padEnd(
+            normalized.length + ((4 - (normalized.length % 4)) % 4),
+            "=",
+          );
+          return atob(padded);
+        },
+      ];
+
+      for (const decoder of decoders) {
+        try {
+          const decoded = decoder(encoded);
+
+          if (!decoded) continue;
+
+          return JSON.parse(decoded);
+        } catch {
+          // Prova il decoder successivo.
+        }
+      }
+
+      return null;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function normalizePageData(data) {
+      const normalized = {};
+
+      for (const key of PLACEHOLDER_KEYS) {
+        normalized[key] = data?.[key] ?? "";
+      }
+
+      return normalized;
+    }
+
+    function applyPageData(data) {
+      const normalized = normalizePageData(data);
+
+      if (normalized.PAGE_TITLE) {
+        document.title = normalized.PAGE_TITLE;
+      }
+
+      let html = document.documentElement.innerHTML;
+
+      for (const key of PLACEHOLDER_KEYS) {
+        const rawValue = normalized[key];
+        const value = HTML_PLACEHOLDER_KEYS.has(key)
+          ? String(rawValue ?? "")
+          : escapeHtml(rawValue);
+
+        html = html.replaceAll(`{{${key}}}`, value);
+      }
+
+      document.documentElement.innerHTML = html;
+    }
+
+    function showImportError() {
+      document.body.innerHTML = `
+        <main class="page">
+          <section class="card section">
+            <div class="section-header">
+              <h2>Dati mancanti o non validi</h2>
+            </div>
+            <p style="color: var(--muted); line-height: 1.6; margin: 0;">
+              Questa pagina deve essere aperta dal bot con un parametro <strong>data</strong> valido.
+            </p>
+          </section>
+        </main>
+      `;
+    }
+
+    function initTabs() {
+      const buttons = Array.from(
+        document.querySelectorAll("[data-tab-target]"),
+      );
+      const panels = Array.from(
+        document.querySelectorAll("[data-tab-panel]"),
+      );
+
+      function activateTab(tabId) {
+        buttons.forEach((button) => {
+          button.classList.toggle(
+            "is-active",
+            button.getAttribute("data-tab-target") === tabId,
+          );
+        });
+
+        panels.forEach((panel) => {
+          panel.classList.toggle(
+            "is-active",
+            panel.getAttribute("data-tab-panel") === tabId,
+          );
+        });
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          activateTab(button.getAttribute("data-tab-target"));
+        });
+      });
+
+      if (buttons.length > 0) {
+        activateTab(buttons[0].getAttribute("data-tab-target"));
+      }
+    }
+
+    function initTelegramWebApp() {
+      const tg = window.Telegram?.WebApp;
+
+      if (!tg) return;
+
+      tg.ready();
+      tg.expand();
+    }
+
+    const encodedData = getPageDataParam();
+    const pageData = decodePageData(encodedData);
+
+    if (!pageData) {
+      showImportError();
+      return;
+    }
+
+    applyPageData(pageData);
+    initTabs();
+    initTelegramWebApp();
+  })();
+</script>
+  </body>
+</html>
