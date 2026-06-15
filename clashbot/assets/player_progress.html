@@ -12,6 +12,12 @@
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <style>
+      @font-face {
+        font-family: "coc-font";
+        src: url("https://link.clashofclans.com/_next/static/media/c02f06199c732d49-s.p.woff2")
+          format("woff2");
+      }
+
       :root {
         --bg: #0f172a;
         --panel: rgba(15, 23, 42, 0.84);
@@ -32,7 +38,7 @@
 
       body {
         margin: 0;
-        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        font-family: "Trebuchet MS", "Segoe UI", "coc-font", sans-serif;
         color: var(--text);
         --background-image: none;
         background:
@@ -633,6 +639,86 @@
         font-size: 13px;
       }
 
+      .page-actions {
+        margin-top: 18px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .coc-btn {
+        appearance: none;
+        text-decoration: none;
+        display: inline-block;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        transition: transform 0.1s linear;
+        font-family: "coc-font", sans-serif;
+      }
+
+      .coc-btn:active {
+        -webkit-transform: scale(0.95);
+        transform: scale(0.95);
+      }
+
+      .coc-btn.button {
+        font-weight: 700;
+        position: relative;
+        border-radius: 12px;
+        border: 1px solid #000;
+        background: linear-gradient(180deg, #d3ebb7, #85c03f 40%, #366c1b);
+        font-size: 22px;
+        line-height: 1.2em;
+        box-shadow:
+          0 0 0 1px #000,
+          0 0 0 2px #000,
+          0 4px 0 2px rgba(0, 0, 0, 0.2);
+        text-shadow:
+          0 -2px #000,
+          0 0 #000,
+          0 2px #000,
+          0 4px #000,
+          -1px -1px #000,
+          1px -1px #000,
+          1px 0 #000,
+          -1px 0 #000,
+          1px 1px #000,
+          -1px 1px #000,
+          1px 2px #000,
+          -1px 2px #000;
+        color: #fff;
+        cursor: pointer;
+        min-width: 280px;
+        padding: 18px 24px;
+      }
+
+      .coc-btn.button::before,
+      .coc-btn.button::after {
+        position: absolute;
+        content: "";
+        z-index: 0;
+      }
+
+      .coc-btn.button::before {
+        inset: 2px;
+        border-radius: 12px;
+        background: linear-gradient(180deg, #7fc427, #58a221);
+        box-shadow: inset 0 0 0.2143rem 0.0357rem hsla(0, 0%, 100%, 0.23);
+      }
+
+      .coc-btn.button::after {
+        top: 0.375rem;
+        right: 0.375rem;
+        left: 0.375rem;
+        height: 50%;
+        border-radius: 0.5rem;
+        background: linear-gradient(180deg, #d0e878, rgba(152, 208, 64, 0.73));
+      }
+
+      .coc-btn.button span {
+        position: relative;
+        z-index: 1;
+        padding: 0 5px;
+      }
+
       .footer {
         margin-top: 18px;
         color: rgba(229, 238, 248, 0.72);
@@ -704,6 +790,35 @@
         .max-badge span {
           font-size: 19px;
         }
+
+        .page-actions {
+          justify-content: stretch;
+        }
+
+        .coc-btn.button {
+          width: 100%;
+          min-width: 0;
+        }
+      }
+
+      @media print {
+        body {
+          background: #0f172a;
+        }
+
+        .page {
+          max-width: none;
+          padding: 0;
+        }
+
+        .page-actions {
+          display: none !important;
+        }
+
+        .card {
+          box-shadow: none;
+          backdrop-filter: none;
+        }
       }
     </style>
   </head>
@@ -739,14 +854,120 @@
         <div id="progressTabs"></div>
       </section>
 
+      <div class="page-actions">
+        <button class="coc-btn button" id="printButton" type="button">
+          <span>Esporta PDF</span>
+        </button>
+      </div>
+
       <div class="footer">
         Generato automaticamente dal bot Telegram Clash of Clans
       </div>
     </main>
   <script>
   (function () {
-    const OTHER_ASSET_BASE =
-      "https://lorenzoconcas.github.io/products/clashbot/assets/others";
+    const ASSETS_BASE = new URL(".", window.location.href).toString().replace(/\/$/, "");
+    const OTHER_ASSET_BASE = `${ASSETS_BASE}/others`;
+    const TILE_BLACK_URL = `${OTHER_ASSET_BASE}/tileblack.png`;
+    const TILE_YELLOW_URL = `${OTHER_ASSET_BASE}/tileyellow.png`;
+    const PET_NAMES = new Set([
+      "Angry Jelly",
+      "Greedy Raven",
+      "L.A.S.S.I",
+      "Mighty Yak",
+      "Electro Owl",
+      "Unicorn",
+      "Phoenix",
+      "Poison Lizard",
+      "Diggy",
+      "Frosty",
+      "Spirit Fox",
+      "Sneezy",
+    ]);
+    const SUPER_TROOP_NAMES = new Set([
+      "Super Barbarian",
+      "Super Archer",
+      "Super Giant",
+      "Sneaky Goblin",
+      "Super Wall Breaker",
+      "Rocket Balloon",
+      "Super Wizard",
+      "Super Dragon",
+      "Inferno Dragon",
+      "Super Miner",
+      "Super Yeti",
+      "Super Minion",
+      "Super Hog Rider",
+      "Super Valkyrie",
+      "Super Witch",
+      "Ice Hound",
+      "Super Bowler",
+    ]);
+    const SIEGE_MACHINE_NAMES = new Set([
+      "Wall Wrecker",
+      "Battle Blimp",
+      "Stone Slammer",
+      "Siege Barracks",
+      "Log Launcher",
+      "Flame Flinger",
+      "Battle Drill",
+      "Troop Launcher",
+      "Sky Wagon",
+    ]);
+    const EQUIPMENT_ASSET_MAP = {
+      Fireball: "Fireball_Equipment.webp",
+    };
+    const EQUIPMENT_HERO_MAP = {
+      "Barbarian Puppet": "Barbarian King",
+      "Rage Vial": "Barbarian King",
+      "Earthquake Boots": "Barbarian King",
+      "Vampstache": "Barbarian King",
+      "Giant Gauntlet": "Barbarian King",
+      "Spiky Ball": "Barbarian King",
+      "Snake Bracelet": "Barbarian King",
+      "Stick Horse": "Barbarian King",
+      "Archer Puppet": "Archer Queen",
+      "Invisibility Vial": "Archer Queen",
+      "Giant Arrow": "Archer Queen",
+      "Monolith Arrow": "Archer Queen",
+      "Healer Puppet": "Archer Queen",
+      "Frozen Arrow": "Archer Queen",
+      "Magic Mirror": "Archer Queen",
+      "Action Figure": "Archer Queen",
+      "Henchmen Puppet": "Minion Prince",
+      "Dark Orb": "Minion Prince",
+      "Metal Pants": "Minion Prince",
+      "Noble Iron": "Minion Prince",
+      "Dark Crown": "Minion Prince",
+      "Meteor Staff": "Minion Prince",
+      "Eternal Tome": "Grand Warden",
+      "Life Gem": "Grand Warden",
+      "Rage Gem": "Grand Warden",
+      "Healing Tome": "Grand Warden",
+      Fireball: "Grand Warden",
+      "Lavaloon Puppet": "Grand Warden",
+      "Heroic Torch": "Grand Warden",
+      "Royal Gem": "Royal Champion",
+      "Seeking Shield": "Royal Champion",
+      "Hog Rider Puppet": "Royal Champion",
+      "Haste Vial": "Royal Champion",
+      "Rocket Spear": "Royal Champion",
+      "Electro Boots": "Royal Champion",
+      "Frost Flake": "Royal Champion",
+      "Fire Heart": "Dragon Duke",
+      "Flame Blower": "Dragon Duke",
+      "Stun Blaster": "Dragon Duke",
+      "Electro Fangs": "Dragon Duke",
+      "Rocket Backpack": "Dragon Duke",
+    };
+    const EQUIPMENT_HERO_FOLDER_MAP = {
+      "Barbarian King": "king",
+      "Archer Queen": "queen",
+      "Minion Prince": "minion_prince",
+      "Grand Warden": "warden",
+      "Royal Champion": "champion",
+      "Dragon Duke": "duke",
+    };
     const SUMMARY_STAT_DEFINITIONS = [
       { label: "Esperienza", iconUrl: `${OTHER_ASSET_BASE}/XP.png` },
       { label: "Donazioni", iconUrl: "" },
@@ -900,6 +1121,80 @@
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
+    }
+
+    function normalizeAssetName(name) {
+      return String(name || "").replace(/ /g, "_");
+    }
+
+    function buildAssetUrl(relativePath) {
+      return `${ASSETS_BASE}/${relativePath}`;
+    }
+
+    function resolveItemImageUrl(name, tab) {
+      const normalized = normalizeAssetName(name);
+
+      if (!name || !tab) return "";
+
+      if (tab.id === "home-heroes") {
+        return buildAssetUrl(`homeArmy/heroes/Avatar_Hero_${normalized}.webp`);
+      }
+
+      if (tab.id === "builder-heroes") {
+        return buildAssetUrl(`builderArmy/heroes/Avatar_Hero_${normalized}.webp`);
+      }
+
+      if (tab.id === "pets" || PET_NAMES.has(name)) {
+        return buildAssetUrl(`homeArmy/pets/Avatar_${normalized}.webp`);
+      }
+
+      if (tab.id === "equipment") {
+        const heroFolder = EQUIPMENT_HERO_FOLDER_MAP[EQUIPMENT_HERO_MAP[name] || ""];
+        const fileName = EQUIPMENT_ASSET_MAP[name] || `${normalized}.webp`;
+
+        if (!heroFolder) return "";
+
+        return buildAssetUrl(`homeArmy/heroes/equipments/${heroFolder}/${fileName}`);
+      }
+
+      if (tab.id === "spells") {
+        return buildAssetUrl(`homeArmy/spells/${normalized}_info.webp`);
+      }
+
+      if (tab.id === "builder-troops") {
+        return buildAssetUrl(`builderArmy/troops/Avatar_${normalized}.webp`);
+      }
+
+      if (tab.id === "home-troops") {
+        if (SIEGE_MACHINE_NAMES.has(name)) {
+          return buildAssetUrl(`homeArmy/siege_machines/Avatar_${normalized}.webp`);
+        }
+
+        if (SUPER_TROOP_NAMES.has(name)) {
+          return buildAssetUrl(`homeArmy/super_troops/Avatar_${normalized}.webp`);
+        }
+
+        return buildAssetUrl(`homeArmy/troops/Avatar_${normalized}.webp`);
+      }
+
+      return "";
+    }
+
+    function buildItemVisual(name, imageUrl) {
+      const safeLetter = escapeHtml((name || "").charAt(0));
+
+      if (!imageUrl) {
+        return `<span class="avatar-fallback" aria-hidden="true">${safeLetter}</span>`;
+      }
+
+      return `
+        <img
+          src="${escapeHtml(imageUrl)}"
+          alt="${escapeHtml(name)}"
+          loading="lazy"
+          onerror="this.replaceWith(Object.assign(document.createElement('span'), { className: 'avatar-fallback', textContent: '${safeLetter}' }))"
+        />
+      `;
     }
 
     function buildStats(values, definitions) {
@@ -1066,7 +1361,7 @@
       return "";
     }
 
-    function renderRegularProgressItem(name, subtitle, level, currentMax, capLabel) {
+    function renderRegularProgressItem(name, subtitle, level, currentMax, capLabel, imageUrl) {
       const safeCurrentMax = Math.max(1, Number(currentMax) || 1);
       const safeLevel = Number(level) || 0;
       const pct = Math.max(
@@ -1077,7 +1372,9 @@
 
       return `
         <article class="progress-item${isMaxed ? " progress-item--th-maxed" : ""}">
-          <div class="progress-visual profile-badge profile-badge--placeholder"><span>${escapeHtml((name || "").charAt(0))}</span></div>
+          <div class="progress-visual">
+            ${buildItemVisual(name, imageUrl)}
+          </div>
           <div class="progress-content">
             <div class="progress-top">
               <div class="progress-name">
@@ -1085,7 +1382,7 @@
                 <span>${escapeHtml(subtitle || "")}</span>
               </div>
               <div class="level-badge-wrap">
-                <div class="dark-level-badge"><span>${escapeHtml(String(safeLevel))}</span></div>
+                <div class="dark-level-badge" style="background-image:url('${escapeHtml(TILE_BLACK_URL)}');"><span>${escapeHtml(String(safeLevel))}</span></div>
               </div>
             </div>
             <div class="progress-bottom">
@@ -1100,7 +1397,9 @@
     function renderAchievementProgressItem(name, stars, value, target, completionInfo) {
       return `
         <article class="progress-item">
-          <div class="progress-visual profile-badge profile-badge--placeholder"><span>${escapeHtml((name || "").charAt(0))}</span></div>
+          <div class="progress-visual">
+            <span class="avatar-fallback" aria-hidden="true">${escapeHtml((name || "").charAt(0))}</span>
+          </div>
           <div class="progress-content">
             <div class="progress-top">
               <div class="progress-name">
@@ -1108,7 +1407,7 @@
                 <span>Achievement</span>
               </div>
               <div class="level-badge-wrap">
-                <div class="dark-level-badge"><span>${escapeHtml(String(stars))}★</span></div>
+                <div class="dark-level-badge" style="background-image:url('${escapeHtml(TILE_BLACK_URL)}');"><span>${escapeHtml(String(stars))}★</span></div>
               </div>
             </div>
             <div class="progress-bottom">
@@ -1142,6 +1441,7 @@
           level,
           capValue || maxLevel || 1,
           capLabel,
+          resolveItemImageUrl(name, tab),
         );
       }
 
@@ -1163,6 +1463,7 @@
         level,
         currentMax,
         getCapLabel(tab, pageData),
+        resolveItemImageUrl(name, tab),
       );
     }
 
@@ -1290,6 +1591,26 @@
       tg.expand();
     }
 
+    function triggerPdfExport() {
+      window.print();
+    }
+
+    function initExportControls() {
+      const printButton = document.getElementById("printButton");
+
+      if (printButton) {
+        printButton.addEventListener("click", triggerPdfExport);
+      }
+
+      const tg = window.Telegram?.WebApp;
+
+      if (!tg?.MainButton) return;
+
+      tg.MainButton.setText("Esporta PDF");
+      tg.MainButton.show();
+      tg.MainButton.onClick(triggerPdfExport);
+    }
+
     const encodedData = getPageDataParam();
     const rawPageData = decodePageData(encodedData);
     const pageData = normalizePageData(rawPageData);
@@ -1302,6 +1623,7 @@
     renderPage(pageData);
     initTabs();
     initTelegramWebApp();
+    initExportControls();
   })();
 </script>
   </body>
