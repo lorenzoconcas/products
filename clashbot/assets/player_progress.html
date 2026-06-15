@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{PAGE_TITLE}}</title>
+    <title>Player Progress</title>
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src * data: blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval'; img-src * data: blob:;"
@@ -34,13 +34,14 @@
         margin: 0;
         font-family: "Trebuchet MS", "Segoe UI", sans-serif;
         color: var(--text);
+        --background-image: none;
         background:
           linear-gradient(
             180deg,
             rgba(15, 23, 42, 0.62),
             rgba(15, 23, 42, 0.92)
           ),
-          url("{{BACKGROUND_IMAGE}}") center/cover fixed no-repeat,
+          var(--background-image) center/cover fixed no-repeat,
           var(--bg);
       }
 
@@ -710,37 +711,32 @@
     <main class="page">
       <section class="hero">
         <article class="card profile">
-          {{PROFILE_VISUALS_BLOCK}}
+          <div class="profile-visuals" id="profileVisuals"></div>
           <div>
             <div class="eyebrow">Player Progress</div>
-            <h1>{{PLAYER_NAME}}</h1>
-            <div class="subtitle">{{PLAYER_TAG}} · {{CLAN_NAME}}</div>
-            <div class="tagline">
-              <span class="chip">{{ROLE}}</span>
-              <span class="chip">Town Hall {{TH_LEVEL}}</span>
-              <span class="chip">Builder Hall {{BH_LEVEL}}</span>
-              <span class="chip">{{LEAGUE_NAME}}</span>
-            </div>
+            <h1 id="playerName"></h1>
+            <div class="subtitle" id="playerSubtitle"></div>
+            <div class="tagline" id="playerChips"></div>
           </div>
         </article>
 
         <aside class="card summary">
           <div class="section-header">
             <h2>Panoramica</h2>
-            <p>{{LAST_UPDATED}}</p>
+            <p id="lastUpdated"></p>
           </div>
-          <div class="summary-grid">{{SUMMARY_STATS}}</div>
+          <div class="summary-grid" id="summaryStats"></div>
         </aside>
       </section>
 
-      <section class="stats-grid">{{TOP_STATS}}</section>
+      <section class="stats-grid" id="topStats"></section>
 
       <section class="card tabs-shell">
         <div class="section-header">
           <h2>Dettaglio Progressione</h2>
           <p></p>
         </div>
-        {{PROGRESSION_TABS}}
+        <div id="progressTabs"></div>
       </section>
 
       <div class="footer">
@@ -749,29 +745,100 @@
     </main>
   <script>
   (function () {
-    const PLACEHOLDER_KEYS = [
-      "PAGE_TITLE",
-      "BACKGROUND_IMAGE",
-      "PROFILE_VISUALS_BLOCK",
-      "PLAYER_NAME",
-      "PLAYER_TAG",
-      "CLAN_NAME",
-      "ROLE",
-      "TH_LEVEL",
-      "BH_LEVEL",
-      "LEAGUE_NAME",
-      "LAST_UPDATED",
-      "SUMMARY_STATS",
-      "TOP_STATS",
-      "PROGRESSION_TABS",
+    const OTHER_ASSET_BASE =
+      "https://lorenzoconcas.github.io/products/clashbot/assets/others";
+    const SUMMARY_STAT_DEFINITIONS = [
+      { label: "Esperienza", iconUrl: `${OTHER_ASSET_BASE}/XP.png` },
+      { label: "Donazioni", iconUrl: "" },
+      { label: "Ricevute", iconUrl: "" },
+      { label: "Capitale Clan", iconUrl: "" },
     ];
-
-    const HTML_PLACEHOLDER_KEYS = new Set([
-      "PROFILE_VISUALS_BLOCK",
-      "SUMMARY_STATS",
-      "TOP_STATS",
-      "PROGRESSION_TABS",
-    ]);
+    const TOP_STAT_DEFINITIONS = [
+      { label: "Trofei", iconUrl: `${OTHER_ASSET_BASE}/Trophy.png` },
+      { label: "Record Trofei", iconUrl: `${OTHER_ASSET_BASE}/legendTrophy.png` },
+      { label: "Stelle di Guerra", iconUrl: `${OTHER_ASSET_BASE}/Star.png` },
+      { label: "Trofei BH", iconUrl: `${OTHER_ASSET_BASE}/builderTrophy.png` },
+    ];
+    const TAB_DEFINITIONS = [
+      {
+        code: 0,
+        id: "home-heroes",
+        label: "Eroi Home",
+        title: "Eroi del Villaggio Principale",
+        subtitle: "Livello attuale e limite disponibile al tuo Town Hall",
+        itemLabel: "Villaggio Principale",
+        capKind: "th",
+      },
+      {
+        code: 1,
+        id: "builder-heroes",
+        label: "Eroi Builder",
+        title: "Eroi della Builder Base",
+        subtitle: "Livello attuale e limite disponibile al tuo Builder Hall",
+        itemLabel: "Builder Base",
+        capKind: "bh",
+      },
+      {
+        code: 2,
+        id: "pets",
+        label: "Pet",
+        title: "Pet",
+        subtitle: "Progressione pet e cap disponibile al tuo Town Hall",
+        itemLabel: "Pet",
+        capKind: "th",
+      },
+      {
+        code: 3,
+        id: "equipment",
+        label: "Equipaggiamenti",
+        title: "Equipaggiamenti Eroi",
+        subtitle: "Progressione equipaggiamenti e cap disponibile al tuo Town Hall",
+        itemLabel: "Equipaggiamento Eroe",
+        capKind: "th",
+      },
+      {
+        code: 4,
+        id: "home-troops",
+        label: "Truppe Home",
+        title: "Truppe del Villaggio Principale",
+        subtitle: "Progressione truppe e cap disponibile al tuo Town Hall",
+        itemLabel: "Villaggio Principale",
+        capKind: "th",
+      },
+      {
+        code: 5,
+        id: "builder-troops",
+        label: "Truppe Builder",
+        title: "Truppe Builder",
+        subtitle: "Progressione truppe e cap disponibile al tuo Builder Hall",
+        itemLabel: "Builder Base",
+        capKind: "bh",
+      },
+      {
+        code: 6,
+        id: "spells",
+        label: "Pozioni",
+        title: "Pozioni",
+        subtitle: "Progressione pozioni e cap disponibile al tuo Town Hall",
+        itemLabel: "Pozione",
+        capKind: "th",
+      },
+      {
+        code: 7,
+        id: "achievements",
+        label: "Achievement",
+        title: "Achievement in evidenza",
+        subtitle: "",
+        itemLabel: "Achievement",
+        isAchievement: true,
+      },
+    ];
+    const TAB_BY_CODE = new Map(
+      TAB_DEFINITIONS.map((definition) => [definition.code, definition]),
+    );
+    const TAB_BY_ID = new Map(
+      TAB_DEFINITIONS.map((definition) => [definition.id, definition]),
+    );
 
     function getHashParams() {
       const rawHash = window.location.hash.replace(/^#/, "");
@@ -835,35 +902,337 @@
         .replaceAll("'", "&#039;");
     }
 
-    function normalizePageData(data) {
-      const normalized = {};
-
-      for (const key of PLACEHOLDER_KEYS) {
-        normalized[key] = data?.[key] ?? "";
-      }
-
-      return normalized;
+    function buildStats(values, definitions) {
+      return definitions.map((definition, index) => [
+        definition.label,
+        values?.[index] ?? "0",
+        definition.iconUrl || "",
+      ]);
     }
 
-    function applyPageData(data) {
-      const normalized = normalizePageData(data);
+    function normalizeTabs(rawTabs, version) {
+      return (rawTabs || [])
+        .map((tab) => {
+          if (!Array.isArray(tab)) return null;
 
-      if (normalized.PAGE_TITLE) {
-        document.title = normalized.PAGE_TITLE;
+          if (version === 2) {
+            const [code, items] = tab;
+            const definition = TAB_BY_CODE.get(code);
+
+            if (!definition) return null;
+
+            return {
+              ...definition,
+              items: Array.isArray(items) ? items : [],
+            };
+          }
+
+          const [id, label, title, subtitle, items] = tab;
+          const definition = TAB_BY_ID.get(id) || {};
+
+          return {
+            ...definition,
+            id: definition.id || id,
+            label: label || definition.label || "",
+            title: title || definition.title || "",
+            subtitle: subtitle || definition.subtitle || "",
+            itemLabel: definition.itemLabel || "",
+            capKind: definition.capKind || "",
+            isAchievement: definition.isAchievement || id === "achievements",
+            items: Array.isArray(items) ? items : [],
+          };
+        })
+        .filter(Boolean);
+    }
+
+    function normalizePageData(data) {
+      if (!data || typeof data !== "object") return null;
+
+      const version = Number(data.v) || 1;
+
+      if (version >= 2) {
+        return {
+          title: data.t || (data.pn ? `Progressione ${data.pn}` : "Player Progress"),
+          bg: data.bg || "",
+          profile: Array.isArray(data.pf) ? data.pf : [],
+          pn: data.pn || "",
+          pt: data.pt || "",
+          cn: data.cn || "",
+          r: data.r || "",
+          th: data.th ?? null,
+          bh: data.bh ?? null,
+          lg: data.lg || "",
+          lu: data.lu || "",
+          s: buildStats(data.s, SUMMARY_STAT_DEFINITIONS),
+          o: buildStats(data.o, TOP_STAT_DEFINITIONS),
+          tabs: normalizeTabs(data.tabs, version),
+        };
       }
 
-      let html = document.documentElement.innerHTML;
+      return {
+        title: data.t || (data.pn ? `Progressione ${data.pn}` : "Player Progress"),
+        bg: data.bg || "",
+        profile: Array.isArray(data.profile) ? data.profile : [],
+        pn: data.pn || "",
+        pt: data.pt || "",
+        cn: data.cn || "",
+        r: data.r || "",
+        th: data.th ?? null,
+        bh: data.bh ?? null,
+        lg: data.lg || "",
+        lu: data.lu || "",
+        s: Array.isArray(data.s) ? data.s : [],
+        o: Array.isArray(data.o) ? data.o : [],
+        tabs: normalizeTabs(data.tabs, version),
+      };
+    }
 
-      for (const key of PLACEHOLDER_KEYS) {
-        const rawValue = normalized[key];
-        const value = HTML_PLACEHOLDER_KEYS.has(key)
-          ? String(rawValue ?? "")
-          : escapeHtml(rawValue);
-
-        html = html.replaceAll(`{{${key}}}`, value);
+    function renderBadge(url, alt, extraClass = "") {
+      if (!url) {
+        return `<div class="profile-badge profile-badge--placeholder ${extraClass}" aria-hidden="true">?</div>`;
       }
 
-      document.documentElement.innerHTML = html;
+      return `<img class="profile-badge ${extraClass}" src="${escapeHtml(url)}" alt="${escapeHtml(alt)}" />`;
+    }
+
+    function renderProfileVisuals(profile) {
+      const [clanBadgeUrl, leagueBadgeUrl, townHallLevel, builderHallLevel] =
+        profile || [];
+      const container = document.getElementById("profileVisuals");
+
+      if (!container) return;
+
+      container.innerHTML = `
+        ${renderBadge(clanBadgeUrl, "Clan badge")}
+        ${renderBadge(leagueBadgeUrl, "League badge", "profile-badge--league")}
+        ${townHallLevel != null ? `<div class="profile-badge profile-badge--townhall"><span>${escapeHtml(String(townHallLevel))}</span></div>` : `<div class="profile-badge profile-badge--placeholder"><span>TH</span></div>`}
+        ${builderHallLevel != null ? `<div class="profile-badge profile-badge--builderhall"><span>${escapeHtml(String(builderHallLevel))}</span></div>` : `<div class="profile-badge profile-badge--placeholder"><span>BH</span></div>`}
+      `;
+    }
+
+    function renderChips(data) {
+      const chips = [
+        data.r,
+        data.th ? `Town Hall ${data.th}` : "",
+        data.bh ? `Builder Hall ${data.bh}` : "",
+        data.lg,
+      ]
+        .filter(Boolean)
+        .map((text) => `<span class="chip">${escapeHtml(text)}</span>`)
+        .join("");
+
+      const chipsContainer = document.getElementById("playerChips");
+      if (chipsContainer) chipsContainer.innerHTML = chips;
+    }
+
+    function renderStats(containerId, stats, isSummary = false) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      container.innerHTML = (stats || [])
+        .map(([label, value, iconUrl]) => {
+          const icon = iconUrl
+            ? `<img src="${escapeHtml(iconUrl)}" alt="${escapeHtml(label)}" />`
+            : "";
+
+          if (isSummary) {
+            return `
+              <div class="mini-stat">
+                <div class="mini-stat-label">${icon}<span>${escapeHtml(label)}</span></div>
+                <div class="mini-stat-value">${escapeHtml(value)}</div>
+              </div>
+            `;
+          }
+
+          return `
+            <article class="card stat">
+              <div class="stat-label">${icon}<span>${escapeHtml(label)}</span></div>
+              <div class="stat-value">${escapeHtml(value)}</div>
+            </article>
+          `;
+        })
+        .join("");
+    }
+
+    function getCapLabel(tab, data) {
+      if (tab.capKind === "th") {
+        return `Lvl Max TH ${data.th ?? "N/D"}`;
+      }
+
+      if (tab.capKind === "bh") {
+        return `Lvl Max BH ${data.bh ?? "N/D"}`;
+      }
+
+      return "";
+    }
+
+    function renderRegularProgressItem(name, subtitle, level, currentMax, capLabel) {
+      const safeCurrentMax = Math.max(1, Number(currentMax) || 1);
+      const safeLevel = Number(level) || 0;
+      const pct = Math.max(
+        0,
+        Math.min(100, Math.round((safeLevel / safeCurrentMax) * 100)),
+      );
+      const isMaxed = safeLevel >= safeCurrentMax;
+
+      return `
+        <article class="progress-item${isMaxed ? " progress-item--th-maxed" : ""}">
+          <div class="progress-visual profile-badge profile-badge--placeholder"><span>${escapeHtml((name || "").charAt(0))}</span></div>
+          <div class="progress-content">
+            <div class="progress-top">
+              <div class="progress-name">
+                <strong>${escapeHtml(name)}</strong>
+                <span>${escapeHtml(subtitle || "")}</span>
+              </div>
+              <div class="level-badge-wrap">
+                <div class="dark-level-badge"><span>${escapeHtml(String(safeLevel))}</span></div>
+              </div>
+            </div>
+            <div class="progress-bottom">
+              <div>${escapeHtml(capLabel || "")}</div>
+              <div class="bar"><span style="width:${escapeHtml(String(pct))}%"></span></div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderAchievementProgressItem(name, stars, value, target, completionInfo) {
+      return `
+        <article class="progress-item">
+          <div class="progress-visual profile-badge profile-badge--placeholder"><span>${escapeHtml((name || "").charAt(0))}</span></div>
+          <div class="progress-content">
+            <div class="progress-top">
+              <div class="progress-name">
+                <strong>${escapeHtml(name)}</strong>
+                <span>Achievement</span>
+              </div>
+              <div class="level-badge-wrap">
+                <div class="dark-level-badge"><span>${escapeHtml(String(stars))}★</span></div>
+              </div>
+            </div>
+            <div class="progress-bottom">
+              <div>${escapeHtml(String(value))}${target ? ` / ${escapeHtml(String(target))}` : ""}</div>
+              <p>${escapeHtml(completionInfo || "")}</p>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderProgressItem(item, tab, pageData) {
+      if (!Array.isArray(item)) return "";
+
+      if (item[0] === "a") {
+        const [, name, stars, value, target, completionInfo] = item;
+        return renderAchievementProgressItem(
+          name,
+          stars,
+          value,
+          target,
+          completionInfo,
+        );
+      }
+
+      if (item[0] === "p") {
+        const [, name, village, level, maxLevel, capLabel, capValue] = item;
+        return renderRegularProgressItem(
+          name,
+          village,
+          level,
+          capValue || maxLevel || 1,
+          capLabel,
+        );
+      }
+
+      if (tab.isAchievement) {
+        const [name, stars, value, target, completionInfo] = item;
+        return renderAchievementProgressItem(
+          name,
+          stars,
+          value,
+          target,
+          completionInfo,
+        );
+      }
+
+      const [name, level, currentMax] = item;
+      return renderRegularProgressItem(
+        name,
+        tab.itemLabel,
+        level,
+        currentMax,
+        getCapLabel(tab, pageData),
+      );
+    }
+
+    function renderEmptyState() {
+      return `
+        <article class="progress-item">
+          <div class="progress-content">
+            <div class="progress-name">
+              <strong>Nessun elemento disponibile.</strong>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderTabs(tabs, pageData) {
+      const container = document.getElementById("progressTabs");
+      if (!container) return;
+
+      const buttons = [];
+      const panels = [];
+
+      (tabs || []).forEach((tab, index) => {
+        const items = Array.isArray(tab.items) ? tab.items : [];
+        buttons.push(`
+          <button class="tab-button${index === 0 ? " is-active" : ""}" type="button" data-tab-target="${escapeHtml(tab.id)}">
+            ${escapeHtml(tab.label)} (${items.length})
+          </button>
+        `);
+
+        panels.push(`
+          <section class="tab-panel${index === 0 ? " is-active" : ""}" data-tab-panel="${escapeHtml(tab.id)}">
+            <div class="section-header">
+              <h2>${escapeHtml(tab.title)}</h2>
+              <p>${escapeHtml(tab.subtitle || "")}</p>
+            </div>
+            <div class="progress-grid">
+              ${items.length ? items.map((item) => renderProgressItem(item, tab, pageData)).join("") : renderEmptyState()}
+            </div>
+          </section>
+        `);
+      });
+
+      container.innerHTML = `<div class="tab-list">${buttons.join("")}</div>${panels.join("")}`;
+    }
+
+    function renderPage(data) {
+      if (!data) return;
+
+      document.title = data.title || document.title;
+      document.documentElement.style.setProperty(
+        "--background-image",
+        data.bg ? `url("${escapeHtml(data.bg)}")` : "none",
+      );
+
+      const playerName = document.getElementById("playerName");
+      const playerSubtitle = document.getElementById("playerSubtitle");
+      const lastUpdated = document.getElementById("lastUpdated");
+
+      if (playerName) playerName.textContent = data.pn || "";
+      if (playerSubtitle) {
+        playerSubtitle.textContent = `${data.pt || ""} · ${data.cn || ""}`;
+      }
+      if (lastUpdated) lastUpdated.textContent = data.lu || "";
+
+      renderProfileVisuals(data.profile);
+      renderChips(data);
+      renderStats("summaryStats", data.s || [], true);
+      renderStats("topStats", data.o || []);
+      renderTabs(data.tabs || [], data);
     }
 
     function showImportError() {
@@ -874,7 +1243,7 @@
               <h2>Dati mancanti o non validi</h2>
             </div>
             <p style="color: var(--muted); line-height: 1.6; margin: 0;">
-              Questa pagina deve essere aperta dal bot con un parametro <strong>data</strong> valido.
+              Questa pagina deve essere aperta dal bot con un parametro <strong>d</strong> o <strong>data</strong> valido.
             </p>
           </section>
         </main>
@@ -882,12 +1251,8 @@
     }
 
     function initTabs() {
-      const buttons = Array.from(
-        document.querySelectorAll("[data-tab-target]"),
-      );
-      const panels = Array.from(
-        document.querySelectorAll("[data-tab-panel]"),
-      );
+      const buttons = Array.from(document.querySelectorAll("[data-tab-target]"));
+      const panels = Array.from(document.querySelectorAll("[data-tab-panel]"));
 
       function activateTab(tabId) {
         buttons.forEach((button) => {
@@ -926,14 +1291,15 @@
     }
 
     const encodedData = getPageDataParam();
-    const pageData = decodePageData(encodedData);
+    const rawPageData = decodePageData(encodedData);
+    const pageData = normalizePageData(rawPageData);
 
     if (!pageData) {
       showImportError();
       return;
     }
 
-    applyPageData(pageData);
+    renderPage(pageData);
     initTabs();
     initTelegramWebApp();
   })();
