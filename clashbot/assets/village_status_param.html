@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stato del villaggio</title>
+    <title>Village Status</title>
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src * data: blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval'; img-src * data: blob:;"
@@ -746,7 +746,7 @@
             frame.onload = () => {
               window.setTimeout(parseFrame, 250);
             };
-            frame.srcdoc = `<!doctype html><html><head><meta charset="utf-8" /></head><body><script src="${ENTITY_MAPPING_GIST_SCRIPT_URL}"></script></body></html>`;
+            frame.srcdoc = `<!doctype html><html><head><meta charset="utf-8" /></head><body><script src="${ENTITY_MAPPING_GIST_SCRIPT_URL}"><\/script></body></html>`;
 
             document.body.appendChild(frame);
           });
@@ -1313,6 +1313,18 @@
           window.print();
         }
 
+        function openCurrentPageInBrowser() {
+          const tg = window.Telegram?.WebApp;
+          const currentUrl = window.location.href;
+
+          if (tg?.openLink) {
+            tg.openLink(currentUrl);
+            return;
+          }
+
+          window.open(currentUrl, "_blank", "noopener,noreferrer");
+        }
+
         function initTelegramWebApp() {
           const tg = window.Telegram?.WebApp;
 
@@ -1324,7 +1336,7 @@
 
         function handleTelegramMainButtonClick() {
           if (parsedStatus) {
-            exportPdf();
+            openCurrentPageInBrowser();
             return;
           }
 
@@ -1337,7 +1349,7 @@
           if (!tg?.MainButton) return;
 
           tg.MainButton.offClick(handleTelegramMainButtonClick);
-          tg.MainButton.setText(parsedStatus ? "Esporta PDF" : "Incolla da appunti");
+          tg.MainButton.setText(parsedStatus ? "Apri nel browser" : "Incolla da appunti");
           tg.MainButton.show();
           tg.MainButton.onClick(handleTelegramMainButtonClick);
         }
