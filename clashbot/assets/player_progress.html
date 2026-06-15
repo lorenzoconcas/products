@@ -274,6 +274,39 @@
         padding: 22px;
       }
 
+      .village-import {
+        margin-top: 20px;
+        padding: 22px;
+        display: grid;
+        gap: 16px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(251, 146, 60, 0.08),
+            rgba(96, 165, 250, 0.08)
+          ),
+          var(--panel-strong);
+      }
+
+      .village-import-actions {
+        display: flex;
+        justify-content: center;
+      }
+
+      .import-status {
+        min-height: 22px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .import-status.is-error {
+        color: #fecaca;
+      }
+
+      .import-status.is-success {
+        color: #bbf7d0;
+      }
+
       .tabs-shell {
         margin-top: 20px;
         padding: 22px;
@@ -846,6 +879,26 @@
 
       <section class="stats-grid" id="topStats"></section>
 
+      <section class="card village-import">
+        <div class="section-header">
+          <div>
+            <h2>Strutture del Villaggio</h2>
+            <p>
+              Per aggiungere il progresso di edifici e trappole a questa stessa
+              pagina, apri il gioco, vai nelle impostazioni, "altre
+              impostazioni" e poi premi "Esporta i dati del villaggio in formato
+              JSON".
+            </p>
+          </div>
+        </div>
+        <div class="village-import-actions">
+          <button class="coc-btn button" id="pasteVillageButton" type="button">
+            <span>Incolla Appunti</span>
+          </button>
+        </div>
+        <div class="import-status" id="villageImportStatus"></div>
+      </section>
+
       <section class="card tabs-shell">
         <div class="section-header">
           <h2>Dettaglio Progressione</h2>
@@ -864,12 +917,20 @@
         Generato automaticamente dal bot Telegram Clash of Clans
       </div>
     </main>
+  <script id="buildingCapsData" type="application/json">{"version":"2026-06-15","sources":{"homeVillage":"https://www.clash.ninja/guides/max-levels-for-each-th","builderBase":"https://clashofclans.fandom.com/wiki/Builder_Hall"},"homeVillage":{"levelKey":"townHall","levels":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18],"buildings":{"Cannon":[1,3,4,5,6,7,8,10,11,13,15,17,19,20,21,21,21,21],"Archer Tower":[null,2,3,4,6,7,8,10,11,13,15,17,19,20,21,21,21,21],"Mortar":[null,null,1,2,3,4,5,6,7,8,10,12,13,14,15,16,17,18],"Air Defense":[null,null,null,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],"Wizard Tower":[null,null,null,null,2,3,4,6,7,9,10,11,13,14,15,16,17,17],"Air Sweeper":[null,null,null,null,null,2,3,4,5,6,7,7,7,7,7,7,7,7],"Hidden Tesla":[null,null,null,null,null,null,3,6,7,8,9,10,12,13,14,15,16,17],"Bomb Tower":[null,null,null,null,null,null,null,2,3,4,6,7,8,9,10,11,12,13],"X-Bow":[null,null,null,null,null,null,null,null,3,4,5,6,8,9,10,11,12,13],"Inferno Tower":[null,null,null,null,null,null,null,null,null,3,5,6,7,8,9,10,11,12],"Eagle Artillery":[null,null,null,null,null,null,null,null,null,null,2,3,4,5,6,7,null,null],"Scattershot":[null,null,null,null,null,null,null,null,null,null,null,null,2,3,4,5,6,7],"Builder Hut":[null,null,null,null,null,null,null,null,null,null,null,null,null,4,5,6,7,7],"Monolith":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,2,3,4,4],"Spell Tower":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,3,3,4,4],"Multi-Archer Tower":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2,3,4],"Ricochet Cannon":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2,3,4],"Firespitter":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2,3],"Multi-Gear Tower":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2,3],"Inferno Artillery":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,5,null],"Revenge Tower":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2],"Super Wizard Tower":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,2],"Army Camp":[1,2,3,4,5,6,6,6,7,8,9,10,11,11,12,12,13,14],"Barracks":[1,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,19],"Clan Castle":[null,1,1,2,2,3,3,4,5,6,7,8,9,10,11,12,13,14],"Laboratory":[null,null,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],"Hero Hall":[null,null,null,1,1,1,1,2,3,4,5,6,7,8,9,10,11,12],"Spell Factory":[null,null,null,null,1,2,3,3,4,5,6,6,7,7,8,9,9,9],"Dark Barracks":[null,null,null,null,null,null,2,4,6,7,8,9,10,11,12,12,12,12],"Dark Spell Factory":[null,null,null,null,null,null,null,2,4,5,5,6,6,7,7,7,7,7],"Blacksmith":[null,null,null,null,null,null,null,1,2,3,4,5,6,7,8,9,10,10],"Workshop":[null,null,null,null,null,null,null,null,null,null,null,3,5,6,7,8,9,9],"Pet House":[null,null,null,null,null,null,null,null,null,null,null,null,null,4,8,10,11,12],"Gold Mine":[1,4,6,8,10,10,11,12,12,13,14,15,15,16,16,17,17,17],"Elixir Collector":[1,4,6,8,10,10,11,12,12,13,14,15,15,16,16,17,17,17],"Gold Storage":[1,3,6,8,9,10,11,11,11,11,12,13,14,15,16,17,18,19],"Elixir Storage":[1,3,6,8,9,10,11,11,11,11,12,13,14,15,16,17,18,19],"Dark Elixir Drill":[null,null,null,null,null,null,3,3,6,7,8,9,9,10,10,11,11,11],"Dark Elixir Storage":[null,null,null,null,null,null,2,4,6,6,6,7,8,9,10,11,12,13],"Helper Hut":[null,null,null,null,null,null,null,null,1,1,1,1,1,1,1,1,1,1],"Walls":[null,2,3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,19]},"traps":{"Bomb":[null,null,2,2,3,3,4,5,6,7,8,8,9,10,11,12,13,14],"Spring Trap":[null,null,null,1,1,1,2,3,4,5,6,7,8,9,10,11,12,13],"Air Bomb":[null,null,null,null,2,2,3,3,4,4,5,6,8,9,10,11,12,13],"Giant Bomb":[null,null,null,null,null,2,2,3,3,4,5,5,7,8,9,10,11,12],"Seeking Air Mine":[null,null,null,null,null,null,1,1,2,3,3,3,4,4,5,6,7,8],"Skeleton Trap":[null,null,null,null,null,null,null,2,3,4,4,4,4,4,4,4,4,5],"Tornado Trap":[null,null,null,null,null,null,null,null,null,2,3,3,3,3,3,3,3,3],"Giga Bomb":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,3,4]}},"builderBase":{"levelKey":"builderHall","levels":[1,2,3,4,5,6,7,8,9,10],"buildings":{"Builder Hall":[1,2,3,4,5,6,7,8,9,10],"Gold Mine":[null,1,3,4,5,6,7,8,9,10],"Elixir Collector":[null,1,3,4,5,6,7,8,9,10],"Gold Storage":[null,null,3,4,5,6,7,8,9,10],"Elixir Storage":[null,null,3,4,5,6,7,8,9,10],"Gem Mine":[null,null,3,4,5,6,7,8,9,10],"Builder Barracks":[null,2,4,6,7,8,9,10,11,12],"Army Camp":[null,1,1,1,1,1,1,1,1,1],"Star Laboratory":[null,2,3,4,5,6,7,8,9,10],"Clock Tower":[null,null,null,4,5,6,7,8,9,10],"Battle Machine Altar":[null,null,null,null,1,1,1,1,1,1],"Reinforcement Camp":[null,null,null,null,null,1,1,1,1,1],"Healing Hut":[null,null,null,null,null,2,3,4,5,6],"Battle Copter Altar":[null,null,null,null,null,null,null,1,1,1],"B.O.B Control":[null,null,null,null,null,null,null,null,5,5],"Cannon":[null,1,3,4,5,6,7,8,9,10],"Archer Tower":[null,1,3,4,5,6,7,8,9,10],"Double Cannon":[null,1,3,4,5,6,7,8,9,10],"Hidden Tesla":[null,null,3,4,5,6,7,8,9,10],"Firecrackers":[null,null,3,4,5,6,7,8,9,10],"Crusher":[null,null,3,4,5,6,7,8,9,10],"Guard Post":[null,null,null,4,5,6,7,8,9,10],"Air Bombs":[null,null,null,4,5,6,7,8,9,10],"Multi Mortar":[null,null,null,null,5,6,7,8,9,10],"O.T.T.O's Outpost":[null,null,null,null,null,6,7,8,9,10],"Roaster":[null,null,null,null,null,6,7,8,9,10],"Giant Cannon":[null,null,null,null,null,null,7,8,9,10],"Mega Tesla":[null,null,null,null,null,null,null,8,9,10],"Lava Launcher":[null,null,null,null,null,null,null,null,9,10],"X-Bow":[null,null,null,null,null,null,null,null,null,5],"Walls":[1,1,3,4,5,6,7,8,9,10]},"traps":{"Push Trap":[null,1,3,4,5,6,7,8,9,10],"Spring Trap":[null,null,1,2,2,3,3,4,4,5],"Mine":[null,null,3,4,5,6,7,8,9,10],"Mega Mine":[null,null,null,4,5,6,7,8,9,10]}}}</script>
   <script>
   (function () {
     const ASSETS_BASE = new URL(".", window.location.href).toString().replace(/\/$/, "");
     const OTHER_ASSET_BASE = `${ASSETS_BASE}/others`;
     const TILE_BLACK_URL = `${OTHER_ASSET_BASE}/tileblack.png`;
     const TILE_YELLOW_URL = `${OTHER_ASSET_BASE}/tileyellow.png`;
+    const ENTITY_MAPPING_GIST_SCRIPT_URL =
+      "https://gist.github.com/pghant/0717bb1e0e4e0d1373e90bdb3057d9dd.js";
+    const ENTITY_MAPPING_RAW_URL =
+      "https://gist.githubusercontent.com/pghant/0717bb1e0e4e0d1373e90bdb3057d9dd/raw/b8792f7d14404068f47570f4a78db7048893bfac/cocMapping.json";
+    const BUILDING_CAPS = JSON.parse(
+      document.getElementById("buildingCapsData")?.textContent || "{}",
+    );
     const PET_NAMES = new Set([
       "Angry Jelly",
       "Greedy Raven",
@@ -980,6 +1041,26 @@
       { label: "Stelle di Guerra", iconUrl: `${OTHER_ASSET_BASE}/Star.png` },
       { label: "Trofei BH", iconUrl: `${OTHER_ASSET_BASE}/builderTrophy.png` },
     ];
+    const TOWN_HALL_ASSET_MAP = {
+      1: "Town_Hall1.png",
+      2: "Town_Hall2.png",
+      3: "Town_Hall3.png",
+      4: "Town_Hall4.png",
+      5: "Town_Hall5.png",
+      6: "Town_Hall6.png",
+      7: "Town_Hall7.png",
+      8: "Town_Hall8.png",
+      9: "Town_Hall9.png",
+      10: "Town_Hall10.png",
+      11: "Town_Hall11.png",
+      12: "Giga_Tesla5.png",
+      13: "Giga_Inferno5.png",
+      14: "Giga_Inferno14-5.png",
+      15: "Giga_Inferno15-5.png",
+      16: "TH16_Main.png",
+      17: "town-hall-17.png",
+      18: "Town_Hall18.png",
+    };
     const TAB_DEFINITIONS = [
       {
         code: 0,
@@ -1054,12 +1135,58 @@
         isAchievement: true,
       },
     ];
+    const STRUCTURE_TAB_DEFINITIONS = [
+      {
+        id: "home-buildings",
+        label: "Edifici TH",
+        title: "Edifici del Villaggio Principale",
+        subtitle: "Progressione edifici e cap disponibile al tuo Town Hall",
+        scopeLabel: "Villaggio Principale",
+        sectionKey: "buildings",
+        village: "homeVillage",
+        capKind: "th",
+      },
+      {
+        id: "home-traps",
+        label: "Trappole TH",
+        title: "Trappole del Villaggio Principale",
+        subtitle: "Progressione trappole e cap disponibile al tuo Town Hall",
+        scopeLabel: "Villaggio Principale",
+        sectionKey: "traps",
+        village: "homeVillage",
+        capKind: "th",
+      },
+      {
+        id: "builder-buildings",
+        label: "Edifici BH",
+        title: "Edifici della Builder Base",
+        subtitle: "Progressione edifici e cap disponibile al tuo Builder Hall",
+        scopeLabel: "Builder Base",
+        sectionKey: "buildings2",
+        village: "builderBase",
+        capKind: "bh",
+      },
+      {
+        id: "builder-traps",
+        label: "Trappole BH",
+        title: "Trappole della Builder Base",
+        subtitle: "Progressione trappole e cap disponibile al tuo Builder Hall",
+        scopeLabel: "Builder Base",
+        sectionKey: "traps2",
+        village: "builderBase",
+        capKind: "bh",
+      },
+    ];
     const TAB_BY_CODE = new Map(
       TAB_DEFINITIONS.map((definition) => [definition.code, definition]),
     );
     const TAB_BY_ID = new Map(
       TAB_DEFINITIONS.map((definition) => [definition.id, definition]),
     );
+    const villageImportStatus = document.getElementById("villageImportStatus");
+    let villageStatusData = null;
+    let entityMappingPromise = null;
+    let entityNameById = new Map();
 
     function getHashParams() {
       const rawHash = window.location.hash.replace(/^#/, "");
@@ -1121,6 +1248,148 @@
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
+    }
+
+    function setVillageImportStatus(message, tone) {
+      if (!villageImportStatus) return;
+
+      villageImportStatus.textContent = message || "";
+      villageImportStatus.classList.remove("is-error", "is-success");
+
+      if (tone === "error") villageImportStatus.classList.add("is-error");
+      if (tone === "success") villageImportStatus.classList.add("is-success");
+    }
+
+    function normalizeEntityMappingEntries(entries) {
+      if (!Array.isArray(entries)) return [];
+
+      return entries
+        .map((entry) => {
+          if (!entry || typeof entry !== "object") return null;
+
+          const dataId = Number(entry.dataId);
+          const name = String(entry.name || "").trim();
+
+          if (!Number.isFinite(dataId) || !name) return null;
+
+          return { dataId, name };
+        })
+        .filter(Boolean);
+    }
+
+    function buildEntityNameMap(entries) {
+      return new Map(
+        normalizeEntityMappingEntries(entries).map((entry) => [
+          String(entry.dataId),
+          entry.name,
+        ]),
+      );
+    }
+
+    function extractJsonArrayFromText(rawText) {
+      const text = String(rawText || "").trim();
+      const startIndex = text.indexOf("[");
+      const endIndex = text.lastIndexOf("]");
+
+      if (startIndex === -1 || endIndex === -1 || endIndex <= startIndex) {
+        throw new Error("JSON array non trovato nel contenuto del gist.");
+      }
+
+      return text.slice(startIndex, endIndex + 1);
+    }
+
+    function loadEntityMappingFromGistScript() {
+      return new Promise((resolve, reject) => {
+        const frame = document.createElement("iframe");
+        const cleanup = () => {
+          window.clearTimeout(timeoutId);
+          frame.remove();
+        };
+        const parseFrame = () => {
+          try {
+            const frameDocument = frame.contentDocument;
+            const rawText =
+              frameDocument?.body?.innerText ||
+              frameDocument?.documentElement?.innerText ||
+              "";
+            const jsonText = extractJsonArrayFromText(rawText);
+            const entries = JSON.parse(jsonText);
+            cleanup();
+            resolve(buildEntityNameMap(entries));
+          } catch (error) {
+            cleanup();
+            reject(error);
+          }
+        };
+        const timeoutId = window.setTimeout(() => {
+          cleanup();
+          reject(new Error("Timeout caricamento script gist mapping."));
+        }, 12000);
+
+        frame.setAttribute("aria-hidden", "true");
+        frame.tabIndex = -1;
+        frame.style.position = "absolute";
+        frame.style.width = "0";
+        frame.style.height = "0";
+        frame.style.border = "0";
+        frame.style.opacity = "0";
+        frame.style.pointerEvents = "none";
+        frame.style.left = "-9999px";
+        frame.onload = () => {
+          window.setTimeout(parseFrame, 250);
+        };
+        frame.srcdoc = `<!doctype html><html><head><meta charset="utf-8" /></head><body><script src="${ENTITY_MAPPING_GIST_SCRIPT_URL}"><\/script></body></html>`;
+
+        document.body.appendChild(frame);
+      });
+    }
+
+    async function loadEntityMappingFromRaw() {
+      const response = await fetch(ENTITY_MAPPING_RAW_URL, {
+        cache: "force-cache",
+        mode: "cors",
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const entries = await response.json();
+      return buildEntityNameMap(entries);
+    }
+
+    function ensureEntityMappingLoaded() {
+      if (entityMappingPromise) return entityMappingPromise;
+
+      entityMappingPromise = (async () => {
+        try {
+          entityNameById = await loadEntityMappingFromGistScript();
+          return entityNameById;
+        } catch (gistError) {
+          console.warn("Mapping gist non disponibile, provo il raw fallback:", gistError);
+
+          try {
+            entityNameById = await loadEntityMappingFromRaw();
+            return entityNameById;
+          } catch (rawError) {
+            console.error("Impossibile caricare il mapping entità:", rawError);
+            entityNameById = new Map();
+            return entityNameById;
+          }
+        }
+      })();
+
+      return entityMappingPromise;
+    }
+
+    function getEntityName(value) {
+      if (value == null) return "";
+      return entityNameById.get(String(value)) || "";
+    }
+
+    function normalizePlayerTag(tag) {
+      const normalized = String(tag || "").trim().toUpperCase();
+      return normalized.startsWith("#") ? normalized : normalized ? `#${normalized}` : "";
     }
 
     function normalizeAssetName(name) {
@@ -1290,6 +1559,31 @@
       return `<img class="profile-badge ${extraClass}" src="${escapeHtml(url)}" alt="${escapeHtml(alt)}" />`;
     }
 
+    function resolveTownHallAsset(level) {
+      const fileName = TOWN_HALL_ASSET_MAP[level];
+      return fileName ? `${ASSETS_BASE}/townHall/${encodeURIComponent(fileName)}` : "";
+    }
+
+    function resolveBuilderHallAsset(level) {
+      if (typeof level !== "number" || !Number.isFinite(level) || level <= 0) {
+        return "";
+      }
+
+      return `${ASSETS_BASE}/builderHall/${level}.png`;
+    }
+
+    function renderHallBadge(url, level, shortLabel, altLabel, extraClass) {
+      if (url && level != null) {
+        return `<img class="profile-badge ${extraClass}" src="${escapeHtml(url)}" alt="${escapeHtml(`${altLabel} ${String(level)}`)}" />`;
+      }
+
+      if (level != null) {
+        return `<div class="profile-badge ${extraClass}"><span class="profile-badge-fallback">${escapeHtml(`${shortLabel} ${String(level)}`)}</span></div>`;
+      }
+
+      return `<div class="profile-badge profile-badge--placeholder" aria-hidden="true"><span class="profile-badge-fallback">${escapeHtml(shortLabel)}</span></div>`;
+    }
+
     function renderProfileVisuals(profile) {
       const [clanBadgeUrl, leagueBadgeUrl, townHallLevel, builderHallLevel] =
         profile || [];
@@ -1300,8 +1594,8 @@
       container.innerHTML = `
         ${renderBadge(clanBadgeUrl, "Clan badge")}
         ${renderBadge(leagueBadgeUrl, "League badge", "profile-badge--league")}
-        ${townHallLevel != null ? `<div class="profile-badge profile-badge--townhall"><span>${escapeHtml(String(townHallLevel))}</span></div>` : `<div class="profile-badge profile-badge--placeholder"><span>TH</span></div>`}
-        ${builderHallLevel != null ? `<div class="profile-badge profile-badge--builderhall"><span>${escapeHtml(String(builderHallLevel))}</span></div>` : `<div class="profile-badge profile-badge--placeholder"><span>BH</span></div>`}
+        ${renderHallBadge(resolveTownHallAsset(townHallLevel), townHallLevel, "TH", "Town Hall", "profile-badge--townhall")}
+        ${renderHallBadge(resolveBuilderHallAsset(builderHallLevel), builderHallLevel, "BH", "Builder Hall", "profile-badge--builderhall")}
       `;
     }
 
@@ -1359,6 +1653,111 @@
       }
 
       return "";
+    }
+
+    function getBuildingCap(caps, village, name, level) {
+      const section = caps[village];
+      if (!section) return null;
+
+      const index = section.levels.indexOf(level);
+      if (index === -1) return null;
+
+      return (
+        section.buildings?.[name]?.[index] ??
+        section.traps?.[name]?.[index] ??
+        null
+      );
+    }
+
+    function formatDuration(totalSeconds) {
+      const seconds = Math.max(0, Number(totalSeconds) || 0);
+      if (!seconds) return "0m";
+
+      const days = Math.floor(seconds / 86400);
+      const hours = Math.floor((seconds % 86400) / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const parts = [];
+
+      if (days) parts.push(`${days}g`);
+      if (hours) parts.push(`${hours}h`);
+      if (minutes || !parts.length) parts.push(`${minutes}m`);
+
+      return parts.join(" ");
+    }
+
+    function buildStructureSubtitle(tab, item) {
+      const parts = [tab.scopeLabel || ""];
+
+      if (item.cnt != null) {
+        parts.push(`x${item.cnt}`);
+      }
+
+      if (item.timer != null) {
+        parts.push(`Upgrade ${formatDuration(item.timer)}`);
+      }
+
+      if (item.gear_up != null) {
+        parts.push("Gear Up");
+      }
+
+      if (item.supercharge != null) {
+        parts.push(`Supercharge ${item.supercharge}`);
+      }
+
+      return parts.join(" · ");
+    }
+
+    function resolveStructureCapValue(level, capValue) {
+      const numericLevel = Number(level) || 0;
+      const numericCap = Number(capValue);
+
+      if (Number.isFinite(numericCap) && numericCap > 0) {
+        return numericCap;
+      }
+
+      return Math.max(1, numericLevel + 1);
+    }
+
+    function buildStructureTabs(pageData) {
+      if (!villageStatusData) return [];
+
+      return STRUCTURE_TAB_DEFINITIONS.map((tab) => {
+        const hallLevel = tab.capKind === "bh" ? pageData.bh : pageData.th;
+        const items = Array.isArray(villageStatusData[tab.sectionKey])
+          ? villageStatusData[tab.sectionKey]
+              .map((item) => {
+                const resolvedName = getEntityName(item.data) || `ID ${item.data}`;
+                const capValue = getBuildingCap(
+                  BUILDING_CAPS,
+                  tab.village,
+                  resolvedName,
+                  hallLevel,
+                );
+
+                return [
+                  "s",
+                  resolvedName,
+                  buildStructureSubtitle(tab, item),
+                  item.lvl ?? 0,
+                  resolveStructureCapValue(item.lvl, capValue),
+                  Number.isFinite(Number(capValue))
+                    ? getCapLabel(tab, pageData)
+                    : `${getCapLabel(tab, pageData)} · Cap N/D`,
+                ];
+              })
+              .sort((left, right) => {
+                const leftLevel = Number(left[3]) || 0;
+                const rightLevel = Number(right[3]) || 0;
+                if (rightLevel !== leftLevel) return rightLevel - leftLevel;
+                return String(left[1]).localeCompare(String(right[1]), "it");
+              })
+          : [];
+
+        return {
+          ...tab,
+          items,
+        };
+      }).filter((tab) => tab.items.length > 0);
     }
 
     function renderRegularProgressItem(name, subtitle, level, currentMax, capLabel, imageUrl) {
@@ -1445,6 +1844,18 @@
         );
       }
 
+      if (item[0] === "s") {
+        const [, name, subtitle, level, capValue, capLabel] = item;
+        return renderRegularProgressItem(
+          name,
+          subtitle,
+          level,
+          capValue || level || 1,
+          capLabel,
+          "",
+        );
+      }
+
       if (tab.isAchievement) {
         const [name, stars, value, target, completionInfo] = item;
         return renderAchievementProgressItem(
@@ -1485,8 +1896,9 @@
 
       const buttons = [];
       const panels = [];
+      const combinedTabs = [...(tabs || []), ...buildStructureTabs(pageData)];
 
-      (tabs || []).forEach((tab, index) => {
+      combinedTabs.forEach((tab, index) => {
         const items = Array.isArray(tab.items) ? tab.items : [];
         buttons.push(`
           <button class="tab-button${index === 0 ? " is-active" : ""}" type="button" data-tab-target="${escapeHtml(tab.id)}">
@@ -1534,6 +1946,57 @@
       renderStats("summaryStats", data.s || [], true);
       renderStats("topStats", data.o || []);
       renderTabs(data.tabs || [], data);
+    }
+
+    async function parseAndAttachVillageStatus(rawText, pageData) {
+      const input = String(rawText || "").trim();
+
+      if (!input) {
+        setVillageImportStatus("Incolla prima un JSON valido.", "error");
+        return;
+      }
+
+      try {
+        const data = JSON.parse(input);
+
+        if (!data || typeof data !== "object" || Array.isArray(data)) {
+          throw new Error("Il contenuto non è un oggetto JSON valido.");
+        }
+
+        const pageTag = normalizePlayerTag(pageData.pt);
+        const villageTag = normalizePlayerTag(data.tag);
+
+        if (pageTag && villageTag && pageTag !== villageTag) {
+          throw new Error(`Il JSON appartiene a ${villageTag}, non a ${pageTag}.`);
+        }
+
+        setVillageImportStatus("JSON letto. Carico il mapping strutture...", null);
+        await ensureEntityMappingLoaded();
+        villageStatusData = data;
+        renderTabs(pageData.tabs || [], pageData);
+        setVillageImportStatus("Strutture importate correttamente. Sono comparse nuove tab.", "success");
+      } catch (error) {
+        console.error("Errore import village status:", error);
+        setVillageImportStatus(
+          error instanceof Error ? error.message : "Errore durante l'import del JSON.",
+          "error",
+        );
+      }
+    }
+
+    async function pasteVillageStatusFromClipboard(pageData) {
+      if (!navigator.clipboard?.readText) {
+        setVillageImportStatus("Clipboard non disponibile in questo contesto.", "error");
+        return;
+      }
+
+      try {
+        const clipboardText = await navigator.clipboard.readText();
+        await parseAndAttachVillageStatus(clipboardText, pageData);
+      } catch (error) {
+        console.error("Errore lettura clipboard strutture:", error);
+        setVillageImportStatus("Non sono riuscito a leggere la clipboard.", "error");
+      }
     }
 
     function showImportError() {
@@ -1595,20 +2058,40 @@
       window.print();
     }
 
-    function initExportControls() {
+    function openCurrentPageInBrowser() {
+      const tg = window.Telegram?.WebApp;
+      const currentUrl = window.location.href;
+
+      if (tg?.openLink) {
+        tg.openLink(currentUrl);
+        return;
+      }
+
+      window.open(currentUrl, "_blank", "noopener,noreferrer");
+    }
+
+    function initExportControls(pageData) {
       const printButton = document.getElementById("printButton");
+      const pasteVillageButton = document.getElementById("pasteVillageButton");
 
       if (printButton) {
         printButton.addEventListener("click", triggerPdfExport);
+      }
+
+      if (pasteVillageButton) {
+        pasteVillageButton.addEventListener("click", () =>
+          pasteVillageStatusFromClipboard(pageData),
+        );
       }
 
       const tg = window.Telegram?.WebApp;
 
       if (!tg?.MainButton) return;
 
-      tg.MainButton.setText("Esporta PDF");
+      tg.MainButton.offClick(openCurrentPageInBrowser);
+      tg.MainButton.setText("Apri nel browser");
       tg.MainButton.show();
-      tg.MainButton.onClick(triggerPdfExport);
+      tg.MainButton.onClick(openCurrentPageInBrowser);
     }
 
     const encodedData = getPageDataParam();
@@ -1623,7 +2106,7 @@
     renderPage(pageData);
     initTabs();
     initTelegramWebApp();
-    initExportControls();
+    initExportControls(pageData);
   })();
 </script>
   </body>
