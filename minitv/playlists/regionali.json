@@ -4,10 +4,9 @@
   "entries": [
     {
       "name": "Videolina",
-      "url": "https://7e1cc2454f2242afabe05cc0a2f483cd.msvdn.net/videolina/videolina_live/videolina_live/video.m3u8",
+      "url": "https://live2.eu-north-1a.cf.dmcdn.net/sec2(SPQKzBnQX6lvCAagpGk5iQ3mSdgmyoUNVGMRC52p-k8CXhTHOeaGA8gcr9LsSPs7hRUcoM3lwVxGGWBel38VqfvXSVrHxmIuUaGCehlp5v-4fLi8gpPj6TVv9EKb3YY7)/cloud/3/xa0aoxk/d/live-720.m3u8",
       "group": "Regionali",
       "logoURL": "https://www.videolina.it/Content/images/logo_12.png",
-      "audioURL": "https://streamcdnr7-7e1cc2454f2242afabe05cc0a2f483cd.msvdn.net/videolina/videolina_live/videolina_live/audio.m3u8"
     }
   ]
 }
