@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@theme inline {
+  --font-sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --color-bg: var(--bg);
+  --color-fg: var(--text);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-accent: var(--accent);
+}
+
+:root {
+  color-scheme: dark light;
+  --bg: #0b1020;
+  --text: #e8eaf0;
+  --muted: #b4bdcf;
+  --accent: #6aa9ff;
+  --surface: rgb(255 255 255 / 0.045);
+  --surface-2: rgb(255 255 255 / 0.03);
+  --border: rgb(255 255 255 / 0.1);
+  --code: #0a0f1f;
+  --aurora-opacity: 0.75;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f5f7fb;
+    --text: #141a2b;
+    --muted: #454e63;
+    --accent: #2563eb;
+    --surface: rgb(255 255 255 / 0.8);
+    --surface-2: rgb(20 26 43 / 0.04);
+    --border: rgb(20 26 43 / 0.12);
+    --code: #eef1f8;
+    --aurora-opacity: 0.45;
+  }
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  background: var(--bg); color: var(--text); font-family: var(--font-sans);
+  font-size: 17px; line-height: 1.65; letter-spacing: -0.003em;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+a { color: color-mix(in srgb, var(--accent) 60%, var(--text)); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* testi delle informative (HTML importato) */
+.policy h3 { margin: 22px 0 6px; font-size: 1.05rem; font-weight: 650; }
+.policy p, .policy li { color: var(--muted); }
+.policy p { margin: 0 0 10px; }
+.policy ul { padding-left: 20px; list-style: disc; margin: 0 0 10px; }
+.policy b { color: var(--text); font-weight: 600; }
+.policy .note { font-size: 15px; }
+
+pre { background: var(--code); border: 1px solid var(--border); border-radius: 12px; padding: 14px; overflow: auto; font-size: 14px; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+
+.aurora-container { width: 100%; height: 100%; }
