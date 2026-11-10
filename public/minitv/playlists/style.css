@@ -89,7 +89,7 @@ p.lead { color: var(--muted); font-size: clamp(16px, 2.6vw, 19px); margin: 0; ma
 }
 .btn:hover { transform: translateY(-1px); }
 .btn:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-.btn.primary { background: var(--accent); color: #fff; border-color: transparent; box-shadow: 0 8px 20px var(--ring); }
+.btn.primary { background: var(--accent); color: #fff; border-color: transparent; }
 .btn.secondary { background: var(--surface); color: var(--text); }
 .btn svg { width: 20px; height: 20px; }
 

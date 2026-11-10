@@ -18,7 +18,7 @@ const badge = {
         <img :src="badge[s.kind].src" :alt="badge[s.kind].alt" :style="{ width: badge[s.kind].w + 'px' }" />
       </a>
       <a v-else :href="s.href" target="_blank" rel="noopener noreferrer"
-        class="inline-flex rounded-xl bg-accent px-4 py-2.5 text-base font-semibold !text-white no-underline shadow-lg transition hover:-translate-y-px">Apri l'app web</a>
+        class="inline-flex rounded-xl bg-accent px-4 py-2.5 text-base font-semibold !text-white no-underline transition hover:-translate-y-px">Apri l'app web</a>
     </template>
   </div>
 </template>

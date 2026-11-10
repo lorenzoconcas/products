@@ -23,8 +23,8 @@ defineProps<{ app: AppInfo }>()
     </div>
     <p class="m-0 flex-1 text-muted">{{ app.summary }}</p>
     <div>
-      <RouterLink :to="`/${app.slug}`" class="inline-flex rounded-xl px-4 py-2.5 text-base font-semibold !text-white no-underline shadow-lg transition hover:-translate-y-px"
-        :style="{ background: app.color, boxShadow: `0 8px 20px ${app.color}66` }">Scopri l'app</RouterLink>
+      <RouterLink :to="`/${app.slug}`" class="inline-flex rounded-xl px-4 py-2.5 text-base font-semibold !text-white no-underline transition hover:-translate-y-px"
+        :style="{ background: app.color }">Scopri l'app</RouterLink>
     </div>
     <div class="flex flex-wrap gap-x-[18px] gap-y-1 border-t border-line pt-3.5 text-[15px] font-medium">
       <a v-for="l in app.homeLinks" :key="l.href" :href="l.href" target="_blank" rel="noopener" class="!text-muted no-underline hover:!text-fg hover:underline">{{ l.label }}</a>
