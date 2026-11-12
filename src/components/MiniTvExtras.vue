@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const base = import.meta.env.BASE_URL
 const web = `${base}minitv/web/`
-const playlists = `${base}minitv/playlists/`
 const m3u = `#EXTM3U
 # NOTE: Playlist di esempio senza contenuti protetti. Sostituisci gli URL con sorgenti autorizzate.
 #EXTINF:-1 tvg-id="" tvg-name="Canale Pubblico 1 (Esempio)" tvg-logo="" group-title="Italia", Canale Pubblico 1 (Esempio)
@@ -38,6 +37,6 @@ const btn = 'inline-flex items-center gap-2 rounded-xl border border-line bg-sur
   </details>
   <details class="mt-4">
     <summary class="cursor-pointer font-medium">Esempi di playlist con canali televisivi</summary>
-    <div class="mt-3"><a :href="playlists" target="_blank" rel="noopener" :class="btn">Playlist di esempio</a></div>
+    <div class="mt-3"><RouterLink to="/minitv/playlists" :class="btn">Playlist di esempio</RouterLink></div>
   </details>
 </template>

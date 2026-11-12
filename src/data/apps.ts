@@ -48,7 +48,7 @@ export const apps: AppInfo[] = [
     icon: minitvIcon,
     color: '#ef4d44',
     platforms: ['iOS', 'macOS', 'Android', 'Web'],
-    version: '1.0.1',
+    version: '1.5',
     features: [
       { title: 'Import facile', text: 'Supporto a URL remoti e file locali. Riconosce M3U/M3U8 standard.' },
       { title: 'Riproduzione stabile', text: 'Player nativo, passaggio rapido tra canali, ripresa automatica.' },

@@ -8,7 +8,7 @@ const route = useRoute()
 const mounted = ref(false) // WebGL solo lato client
 onMounted(() => (mounted.value = true))
 const stops = computed<string[]>(() => {
-  const app = apps.find((a) => route.path.replace(/\/$/, '') === `/${a.slug}`)
+  const app = apps.find((a) => route.path.split('/')[1] === a.slug)
   return app
     ? [app.color, '#0b1020', app.color]
     : ['#ef4d44', '#3b9cf0', '#3aa384']
