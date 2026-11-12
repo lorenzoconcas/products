@@ -119,7 +119,7 @@ export const apps: AppInfo[] = [
       { title: 'Sincronizzazione e condivisione facoltative', text: 'Con l’accesso Google puoi usare più dispositivi e condividere una casa con altre persone, in modifica o sola lettura.' },
       { title: 'I tuoi dati, sotto il tuo controllo', text: "Puoi esportarli e, dall'app, eliminare l'account con tutti i dati nel cloud." },
     ],
-    stores: [{ kind: 'web', href: 'https://estate-expense-manager.netlify.app' }],
+    stores: [{ kind: 'web', href: 'https://estate-expense-manager.web.app' }],
     notes: [
       'Presto in arrivo anche per iOS e Android.',
       'Nota: i calcoli sono indicativi e non sono consulenza legale, fiscale o professionale.',
@@ -132,7 +132,7 @@ export const apps: AppInfo[] = [
       { lang: 'es', label: 'Español', heading: 'Política de privacidad', html: spesePrivacyEs },
       { lang: 'pt', label: 'Português', heading: 'Política de privacidade', html: spesePrivacyPt },
     ],
-    homeLinks: [{ label: "Apri l'app web", href: 'https://estate-expense-manager.netlify.app', external: true }],
+    homeLinks: [{ label: "Apri l'app web", href: 'https://estate-expense-manager.web.app', external: true }],
   },
 ]
 
