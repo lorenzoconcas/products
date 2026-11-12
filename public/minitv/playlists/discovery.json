@@ -5,7 +5,8 @@
     {
       "name": "NOVE",
       "url": "https://amg16146-wbdi-amg16146c1-samsung-it-1831.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-nove-samsungit/playlist.m3u8",
-      "group": "Discovery"
+      "group": "Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/nove.png"
     },
     {
       "name": "Real Time",
@@ -15,17 +16,20 @@
     {
       "name": "Food Network",
       "url": "https://amg16146-wbdi-amg16146c3-samsung-it-1836.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-foodnetwork-samsungit/playlist.m3u8",
-      "group": "Discovery"
+      "group": "Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/foodnetwork.png"
     },
     {
       "name": "Warner TV",
       "url": "https://amg16146-wbdi-amg16146c4-samsung-it-1837.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-warnertv-samsungit/playlist.m3u8",
-      "group": "Discovery"
+      "group": "Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnertv.png"
     },
     {
       "name": "Giallo",
       "url": "https://amg16146-wbdi-amg16146c5-samsung-it-1838.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-giallo-samsungit/playlist.m3u8",
-      "group": "Discovery"
+      "group": "Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/giallo.png"
     },
     {
       "name": "K2",
@@ -40,7 +44,8 @@
     {
       "name": "DMAX",
       "url": "https://amg16146-wbdi-amg16146c8-samsung-it-1841.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-dmax-samsungit/playlist.m3u8",
-      "group": "Discovery"
+      "group": "Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/dmax.png"
     },
     {
       "name": "HGTV - Home&Garden",
@@ -50,7 +55,8 @@
     {
       "name": "Motor Trend",
       "url": "https://amg16146-wbdi-amg16146c10-samsung-it-1843.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-motortrend-samsungit/playlist.m3u8",
-      "group": "Discovery"
+      "group": "Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/motortrend.png"
     }
   ]
 }

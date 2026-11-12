@@ -5,17 +5,20 @@
     {
       "name": "Rai 1",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=2606803&output=7&forceUserAgent=raiplayappletv",
-      "group": "Rai"
+      "group": "Rai",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai1.png"
     },
     {
       "name": "Rai 2",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv",
-      "group": "Rai"
+      "group": "Rai",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai2.png"
     },
     {
       "name": "Rai 3",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308709&output=7&forceUserAgent=raiplayappletv",
-      "group": "Rai"
+      "group": "Rai",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai3.png"
     },
     {
       "name": "Rai 4",
@@ -25,7 +28,8 @@
     {
       "name": "Rai 5",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=395276&output=7&forceUserAgent=raiplayappletv",
-      "group": "Rai"
+      "group": "Rai",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai5.png"
     },
     {
       "name": "Rai Movie",
@@ -50,17 +54,20 @@
     {
       "name": "Rai News 24",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=1&output=7&forceUserAgent=raiplayappletv",
-      "group": "Rai"
+      "group": "Rai",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rainews24.png"
     },
     {
       "name": "Rai Storia",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746990&output=7&forceUserAgent=raiplayappletv",
-      "group": "Rai"
+      "group": "Rai",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/raistoria.png"
     },
     {
       "name": "Rai Scuola",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=747011&output=7&forceUserAgent=raiplayappletv",
-      "group": "Rai"
+      "group": "Rai",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/raiscuola.png"
     },
     {
       "name": "Rai Sport + HD",

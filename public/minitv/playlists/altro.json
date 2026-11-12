@@ -10,7 +10,8 @@
     {
       "name": "TV2000",
       "url": "https://hls-live-tv2000.akamaized.net/hls/live/2028510/tv2000/master.m3u8",
-      "group": "Altro"
+      "group": "Altro",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/tv2000.png"
     },
     {
       "name": "LA7d",
@@ -25,7 +26,8 @@
     {
       "name": "Super!",
       "url": "https://vimnitaly.akamaized.net/hls/live/2094034/super/master.m3u8",
-      "group": "Altro"
+      "group": "Altro",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/super.png"
     },
     {
       "name": "Casa Italia 53",
@@ -50,7 +52,8 @@
     {
       "name": "SuperTennis",
       "url": "https://live-embed.supertennix.hiway.media/restreamer/supertennix_client/gpu-a-c0-16/restreamer/rtmp/hls/h24_supertennix/manifest.m3u8",
-      "group": "Altro"
+      "group": "Altro",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/supertennis.png"
     },
     {
       "name": "ALMA TV",
@@ -60,7 +63,8 @@
     {
       "name": "BOM Channel",
       "url": "https://5f22d76e220e1.streamlock.net/canale6/canale6/playlist.m3u8",
-      "group": "Altro"
+      "group": "Altro",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/bomchannel.png"
     },
     {
       "name": "Canale Italia",
@@ -105,7 +109,8 @@
     {
       "name": "SuperSix",
       "url": "https://5db313b643fd8.streamlock.net/SUPERSIXLombardia/SUPERSIXLombardia/playlist.m3u8",
-      "group": "Altro"
+      "group": "Altro",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/supersix.png"
     }
   ]
 }
