@@ -16,7 +16,7 @@ const title = 'MiniTV – Crea playlist'
 const lead = 'Crea, importa ed esporta playlist per MiniTV direttamente dal browser.'
 useHead({
   title,
-  meta: [{ name: 'description', content: lead }, { property: 'og:title', content: title }, { property: 'og:description', content: lead }],
+  meta: [{ name: 'robots', content: 'noindex' }, { name: 'description', content: lead }, { property: 'og:title', content: title }, { property: 'og:description', content: lead }],
   link: [{ rel: 'icon', href: app.icon }],
 })
 
