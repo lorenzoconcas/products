@@ -75,6 +75,7 @@ const btn = 'inline-flex h-11 cursor-pointer items-center gap-2 rounded-xl borde
         class="size-32 rounded-[30px] object-cover ring-1 ring-line" :style="{ boxShadow: `0 18px 50px ${app.color}73` }" />
       <h1 class="m-0 text-[clamp(28px,5vw,44px)] font-bold leading-[1.12] tracking-[-0.03em]">MiniTV – Playlist di esempio</h1>
       <p class="m-0 max-w-[62ch] text-[clamp(16px,2.6vw,19px)] text-muted">{{ lead }}</p>
+      <RouterLink to="/minitv/crea-playlist" :class="btn + ' no-underline'">Crea la tua playlist</RouterLink>
     </header>
 
     <div class="flex flex-col gap-2">
