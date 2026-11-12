@@ -1,62 +1,90 @@
 {
   "version": 1,
-  "title": "Canali Italiani - Discovery",
+  "title": "Warner Bros Discovery",
   "entries": [
     {
-      "name": "NOVE",
-      "url": "https://amg16146-wbdi-amg16146c1-samsung-it-1831.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-nove-samsungit/playlist.m3u8",
-      "group": "Discovery",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/nove.png"
+      "name": "Discovery Channel",
+      "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/DISCOVERYCHANNEL/CMAF/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/discoverychannel.png",
+      "hideTitle": true
     },
     {
-      "name": "Real Time",
-      "url": "https://amg16146-wbdi-amg16146c2-samsung-it-1835.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-realtime-samsungit/playlist.m3u8",
-      "group": "Discovery"
+      "name": "Discovery Channel HD",
+      "url": "http://102.129.186.182:81/discovery/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/discoverychannelhd.png",
+      "hideTitle": true
     },
     {
-      "name": "Food Network",
-      "url": "https://amg16146-wbdi-amg16146c3-samsung-it-1836.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-foodnetwork-samsungit/playlist.m3u8",
-      "group": "Discovery",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/foodnetwork.png"
-    },
-    {
-      "name": "Warner TV",
-      "url": "https://amg16146-wbdi-amg16146c4-samsung-it-1837.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-warnertv-samsungit/playlist.m3u8",
-      "group": "Discovery",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnertv.png"
-    },
-    {
-      "name": "Giallo",
-      "url": "https://amg16146-wbdi-amg16146c5-samsung-it-1838.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-giallo-samsungit/playlist.m3u8",
-      "group": "Discovery",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/giallo.png"
-    },
-    {
-      "name": "K2",
-      "url": "https://amg16146-wbdi-amg16146c6-samsung-it-1839.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-k2-samsungit/playlist.m3u8",
-      "group": "Discovery"
-    },
-    {
-      "name": "Frisbee",
-      "url": "https://amg16146-wbdi-amg16146c7-samsung-it-1840.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-frisbee-samsungit/playlist.m3u8",
-      "group": "Discovery"
+      "name": "Discovery Turbo",
+      "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/TURBO/CMAF/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/discoveryturbo.png",
+      "hideTitle": true
     },
     {
       "name": "DMAX",
-      "url": "https://amg16146-wbdi-amg16146c8-samsung-it-1841.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-dmax-samsungit/playlist.m3u8",
-      "group": "Discovery",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/dmax.png"
+      "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/DMAX/CMAF/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/dmax.png",
+      "hideTitle": true
     },
     {
-      "name": "HGTV - Home&Garden",
-      "url": "https://amg16146-wbdi-amg16146c9-samsung-it-1842.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-hgtv-samsungit/playlist.m3u8",
-      "group": "Discovery"
+      "name": "DMAX HD",
+      "url": "http://102.129.186.182:81/dmax/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/dmaxhd.png",
+      "hideTitle": true
     },
     {
-      "name": "Motor Trend",
-      "url": "https://amg16146-wbdi-amg16146c10-samsung-it-1843.playouts.now.amagi.tv/playlist/amg16146-warnerbrosdiscoveryitalia-motortrend-samsungit/playlist.m3u8",
-      "group": "Discovery",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/motortrend.png"
+      "name": "Food Network",
+      "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/FOODNETWORK/CMAF/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/foodnetwork.png",
+      "hideTitle": true
+    },
+    {
+      "name": "Giallo",
+      "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/GIALLO/CMAF/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/giallo.png",
+      "hideTitle": true
+    },
+    {
+      "name": "HGTV",
+      "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/HGTV/CMAF/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/hgtv.png",
+      "hideTitle": true
+    },
+    {
+      "name": "Nove",
+      "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/NOVE/CMAF/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/nove.png",
+      "hideTitle": true
+    },
+    {
+      "name": "Real Time",
+      "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/REALTIME/CMAF/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/realtime.png",
+      "hideTitle": true
+    },
+    {
+      "name": "Real Time HD",
+      "url": "http://102.129.186.182:81/realtime/index.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/realtimehd.png",
+      "hideTitle": true
+    },
+    {
+      "name": "The Pet Collective Italy",
+      "url": "https://the-pet-collective-international-it.samsung.wurl.tv/playlist.m3u8",
+      "group": "Warner Bros Discovery",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/thepetcollectiveitaly.png",
+      "hideTitle": true
     }
   ]
 }
