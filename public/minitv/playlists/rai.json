@@ -6,7 +6,7 @@
       "name": "Rai 1",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=2606803&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai1.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/rai1.png",
       "backgroundHex": "#FFFFFF",
       "hideTitle": true
     },
@@ -14,90 +14,90 @@
       "name": "Rai 2",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai2.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/rai2.png",
       "hideTitle": true
     },
     {
       "name": "Rai 3",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308709&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai3.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/rai3.png",
       "hideTitle": true
     },
     {
       "name": "Rai 4",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746966&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai4.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/rai4.png",
       "hideTitle": true
     },
     {
       "name": "Rai 5",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=395276&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai5.png"
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/rai5.png"
     },
     {
       "name": "Rai Movie",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=747002&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/raimovie.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/raimovie.png",
       "hideTitle": true
     },
     {
       "name": "Rai Premium",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746992&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/raipremium.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/raipremium.png",
       "hideTitle": true
     },
     {
       "name": "Rai Gulp",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746953&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/raigulp.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/raigulp.png",
       "hideTitle": true
     },
     {
       "name": "Rai Yoyo",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746899&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/raiyoyo.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/raiyoyo.png",
       "hideTitle": true
     },
     {
       "name": "Rai News 24",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=1&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rainews24.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/rainews24.png",
       "hideTitle": true
     },
     {
       "name": "Rai Storia",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746990&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/raistoria.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/raistoria.png",
       "hideTitle": true
     },
     {
       "name": "Rai Scuola",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=747011&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/raiscuola.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/raiscuola.png",
       "hideTitle": true
     },
     {
       "name": "Rai Sport + HD",
       "url": "https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=358025&output=7&forceUserAgent=raiplayappletv",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/raisportplushd.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/raisportplushd.png",
       "hideTitle": true
     },
     {
       "name": "Rai 4K (HbbTV)",
       "url": "https://raievent10-elem-live.akamaized.net/hls/live/619189/raievent10/raievent10/playlist.m3u8",
       "group": "Rai",
-      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai4k.png",
+      "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/rai/rai4k.png",
       "hideTitle": true
     }
   ]
