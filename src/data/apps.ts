@@ -57,7 +57,6 @@ export const apps: AppInfo[] = [
     stores: [
       { kind: 'ios', href: 'https://apps.apple.com/it/app/minitv/id6751760709' },
       { kind: 'mac', href: 'https://apps.apple.com/it/app/minitv/id6751760709' },
-      { kind: 'apk', href: `${base}minitv/MiniTV.apk` },
     ],
     notes: [
       "Nota: l'app non include canali preinstallati. Usa solo sorgenti di cui possiedi i diritti di visione/redistribuzione.",
