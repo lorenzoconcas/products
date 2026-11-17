@@ -47,22 +47,27 @@ export const apps: AppInfo[] = [
     lead: "Aggiungi le tue playlist M3U/M3U8 o JSON, organizza i canali a modo tuo e guarda in modo fluido con un'interfaccia pulita e veloce.",
     icon: minitvIcon,
     color: '#ef4d44',
-    platforms: ['iOS', 'macOS', 'Android', 'Web'],
+    platforms: ['iOS', 'macOS', 'Android'],
     version: '2.0',
     features: [
       { title: 'Import facile', text: 'Supporto a URL remoti e file locali. Riconosce M3U/M3U8 e il formato JSON.' },
-      { title: 'Riproduzione stabile', text: 'Player di sistema con VLC come alternativa automatica, passaggio rapido tra canali.' },
+      { title: 'Riproduzione stabile', text: 'Player di sistema con VLC come alternativa automatica su iPhone, iPad e Mac; su Android ExoPlayer con HLS e DASH, Picture-in-Picture e Google Cast.' },
       { title: 'I canali a modo tuo', text: 'Schede con logo e colori, ordine alfabetico, manuale o per gruppo; puoi personalizzare o nascondere ogni canale.' },
     ],
     stores: [
       { kind: 'ios', href: 'https://apps.apple.com/it/app/minitv/id6751760709' },
       { kind: 'mac', href: 'https://apps.apple.com/it/app/minitv/id6751760709' },
+      { kind: 'apk', href: `${base}minitv/MiniTV.apk` },
     ],
     notes: [
       "Nota: l'app non include canali preinstallati. Usa solo sorgenti di cui possiedi i diritti di visione/redistribuzione.",
+      "Android: l'app si installa dal file APK (non è sul Play Store). Dopo il download, consenti l'installazione da questa fonte quando Android lo chiede; poi apri il file. Per le trasmissioni su TV usa Google Cast.",
     ],
     privacy: [{ lang: 'it', label: 'Italiano', heading: 'Privacy Policy', html: minitvPrivacy }],
-    homeLinks: [{ label: 'App Store', href: 'https://apps.apple.com/it/app/minitv/id6751760709', external: true }],
+    homeLinks: [
+      { label: 'App Store', href: 'https://apps.apple.com/it/app/minitv/id6751760709', external: true },
+      { label: 'APK Android', href: `${base}minitv/MiniTV.apk`, external: true },
+    ],
   },
   {
     slug: 'racemap',
