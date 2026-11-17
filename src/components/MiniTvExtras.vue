@@ -18,6 +18,7 @@ const json = `{
     }
   ]
 }`
+const btn = 'inline-flex items-center gap-2 rounded-xl border border-line bg-surface px-4 py-2.5 text-base font-semibold !text-fg no-underline transition hover:-translate-y-px'
 </script>
 
 <template>
@@ -28,5 +29,9 @@ const json = `{
   <details class="mt-4">
     <summary class="cursor-pointer font-medium">Esempio di playlist JSON</summary>
     <pre class="mt-3">{{ json }}</pre>
+  </details>
+  <details class="mt-4">
+    <summary class="cursor-pointer font-medium">Esempi di playlist con canali televisivi</summary>
+    <div class="mt-3"><RouterLink to="/minitv/playlists" :class="btn">Playlist di esempio</RouterLink></div>
   </details>
 </template>

@@ -14,7 +14,6 @@ const lead =
 useHead({
   title,
   meta: [
-    { name: "robots", content: "noindex" },
     { name: "description", content: lead },
     { property: "og:title", content: title },
     { property: "og:description", content: lead },
