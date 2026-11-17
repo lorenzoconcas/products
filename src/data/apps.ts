@@ -119,15 +119,18 @@ export const apps: AppInfo[] = [
     lead: 'Spese, quote e vendita di immobili in comproprietà: chi ha pagato, chi deve soldi a chi e come dividere il prezzo di vendita tra i proprietari.',
     icon: speseIcon,
     color: '#3aa384',
-    platforms: ['Web', 'iOS e Android in arrivo'],
+    platforms: ['iOS', 'Web', 'Android in arrivo'],
     features: [
       { title: 'Funziona anche senza account', text: 'Senza accedere, i dati restano esclusivamente sul tuo dispositivo.' },
-      { title: 'Sincronizzazione e condivisione facoltative', text: 'Con l’accesso Google puoi usare più dispositivi e condividere una casa con altre persone, in modifica o sola lettura.' },
+      { title: 'Sincronizzazione e condivisione facoltative', text: 'Con l’accesso Google o Apple puoi usare più dispositivi e condividere una casa con altre persone, in modifica o sola lettura.' },
       { title: 'I tuoi dati, sotto il tuo controllo', text: "Puoi esportarli e, dall'app, eliminare l'account con tutti i dati nel cloud." },
     ],
-    stores: [{ kind: 'web', href: 'https://estate-expense-manager.web.app' }],
+    stores: [
+      { kind: 'ios', href: 'https://apps.apple.com/it/app/spese-immobili/id6833086268' },
+      { kind: 'web', href: 'https://estate-expense-manager.web.app' },
+    ],
     notes: [
-      'Presto in arrivo anche per iOS e Android.',
+      'Presto in arrivo anche per Android.',
       'Nota: i calcoli sono indicativi e non sono consulenza legale, fiscale o professionale.',
     ],
     privacy: [
@@ -138,7 +141,10 @@ export const apps: AppInfo[] = [
       { lang: 'es', label: 'Español', heading: 'Política de privacidad', html: spesePrivacyEs },
       { lang: 'pt', label: 'Português', heading: 'Política de privacidade', html: spesePrivacyPt },
     ],
-    homeLinks: [{ label: "Apri l'app web", href: 'https://estate-expense-manager.web.app', external: true }],
+    homeLinks: [
+      { label: 'App Store', href: 'https://apps.apple.com/it/app/spese-immobili/id6833086268', external: true },
+      { label: "Apri l'app web", href: 'https://estate-expense-manager.web.app', external: true },
+    ],
   },
 ]
 
