@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pagina spostata – Lorenzo Concas</title>
+<script>
+  // /products/<percorso> → https://lorenzoconcas.github.io/<percorso> (query e hash inclusi)
+  var rest = location.pathname.replace(/^\/products(?=\/|$)/, '') || '/';
+  location.replace('https://lorenzoconcas.github.io' + rest + location.search + location.hash);
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://lorenzoconcas.github.io/"></noscript>
+</head>
+<body>
+<p>Il sito si è spostato: <a href="https://lorenzoconcas.github.io/">lorenzoconcas.github.io</a>.</p>
+</body>
+</html>
