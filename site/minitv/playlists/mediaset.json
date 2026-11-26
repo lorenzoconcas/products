@@ -1,9 +1,11 @@
 {
   "version": 1,
   "title": "Canali Italiani - Mediaset",
+  "epgUrl": "https://tvit.leicaflorianrobert.dev/epg/list.xml",
   "entries": [
     {
       "name": "Rete 4",
+      "epgId": "rete-4",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-r4/r4-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/rete4.png",
@@ -11,6 +13,7 @@
     },
     {
       "name": "Canale 5",
+      "epgId": "canale-5",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-c5/c5-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/canale5.png",
@@ -18,12 +21,14 @@
     },
     {
       "name": "Italia 1",
+      "epgId": "italia-1",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-i1/i1-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/italia1.png"
     },
     {
       "name": "20 Mediaset",
+      "epgId": "20",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-lb/lb-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/20.png",
@@ -31,6 +36,7 @@
     },
     {
       "name": "Iris",
+      "epgId": "iris",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-ki/ki-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/iris.png",
@@ -38,6 +44,7 @@
     },
     {
       "name": "27 Twentyseven",
+      "epgId": "twenty-seven",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-ts/ts-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/twentyseven.png",
@@ -45,6 +52,7 @@
     },
     {
       "name": "La5",
+      "epgId": "la-5",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-ka/ka-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/la5.png",
@@ -52,24 +60,28 @@
     },
     {
       "name": "Cine34",
+      "epgId": "cine34",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-b6/b6-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/cine34.png"
     },
     {
       "name": "Focus",
+      "epgId": "focus",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-fu/fu-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/focus.png"
     },
     {
       "name": "Top Crime",
+      "epgId": "top-crime",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-lt/lt-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/topcrime.png"
     },
     {
       "name": "Boing",
+      "epgId": "boing",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-kb/kb-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/boing.png",
@@ -77,6 +89,7 @@
     },
     {
       "name": "Cartoonito",
+      "epgId": "cartoonito",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-la/la-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/cartoonito.png",
@@ -84,12 +97,14 @@
     },
     {
       "name": "Italia 2",
+      "epgId": "italia-2",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-i2/i2-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/italia2.png"
     },
     {
       "name": "TGcom24",
+      "epgId": "tgcom24",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-kf/kf-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/tgcom24.png",
@@ -97,6 +112,7 @@
     },
     {
       "name": "Mediaset Extra",
+      "epgId": "mediaset-extra",
       "url": "https://live03-col.msf.cdn.mediaset.net/live/ch-kq/kq-clr.isml/manifest.mpd",
       "group": "Mediaset",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/mediaset/mediasetextra.png",

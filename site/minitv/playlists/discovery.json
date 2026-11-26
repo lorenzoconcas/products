@@ -1,6 +1,7 @@
 {
   "version": 1,
   "title": "Warner Bros Discovery",
+  "epgUrl": "https://tvit.leicaflorianrobert.dev/epg/list.xml",
   "entries": [
     {
       "name": "Discovery Channel",
@@ -25,6 +26,7 @@
     },
     {
       "name": "DMAX",
+      "epgId": "dmax",
       "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/DMAX/CMAF/index.m3u8",
       "group": "Warner Bros Discovery",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/dmax.png",
@@ -32,6 +34,7 @@
     },
     {
       "name": "DMAX HD",
+      "epgId": "dmax",
       "url": "http://102.129.186.182:81/dmax/index.m3u8",
       "group": "Warner Bros Discovery",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/dmaxhd.png",
@@ -46,6 +49,7 @@
     },
     {
       "name": "Giallo",
+      "epgId": "giallo",
       "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/GIALLO/CMAF/index.m3u8",
       "group": "Warner Bros Discovery",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/giallo.png",
@@ -60,6 +64,7 @@
     },
     {
       "name": "Nove",
+      "epgId": "nove",
       "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/NOVE/CMAF/index.m3u8",
       "group": "Warner Bros Discovery",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/nove.png",
@@ -67,6 +72,7 @@
     },
     {
       "name": "Real Time",
+      "epgId": "real-time",
       "url": "https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/REALTIME/CMAF/index.m3u8",
       "group": "Warner Bros Discovery",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/realtime.png",
@@ -74,6 +80,7 @@
     },
     {
       "name": "Real Time HD",
+      "epgId": "real-time",
       "url": "http://102.129.186.182:81/realtime/index.m3u8",
       "group": "Warner Bros Discovery",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/warnerbrosdiscovery/realtimehd.png",

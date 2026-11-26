@@ -1,9 +1,11 @@
 {
   "version": 1,
   "title": "Canali Italiani - Altro",
+  "epgUrl": "https://tvit.leicaflorianrobert.dev/epg/list.xml",
   "entries": [
     {
       "name": "LA7",
+      "epgId": "la7",
       "url": "https://jmp2.uk/stvp-ITBD1500002NL",
       "group": "Altro"
     },
@@ -15,6 +17,7 @@
     },
     {
       "name": "LA7d",
+      "epgId": "la7-cinema",
       "url": "https://d15umi5iaezxgx.cloudfront.net/LA7D/CLN/HLS/Live.m3u8",
       "group": "Altro"
     },
@@ -36,6 +39,7 @@
     },
     {
       "name": "Sportitalia",
+      "epgId": "sportitalia",
       "url": "https://sportitaliaamd.akamaized.net/live/Sportitalia/hls/F59D8EB0332E783633CDDE8E265844975635D24F/index.m3u8",
       "group": "Altro"
     },

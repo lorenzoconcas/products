@@ -1,9 +1,11 @@
 {
   "version": 1,
   "title": "SKY",
+  "epgUrl": "https://tvit.leicaflorianrobert.dev/epg/list.xml",
   "entries": [
     {
       "name": "TV8",
+      "epgId": "tv8",
       "url": "https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11223/tv8web/master.m3u8?hdnts=st=1764666351~exp=1829466206~acl=/*~hmac=b0e9165b6c55027903ad103c8219f363d8765eb300c0d9a339e9767fc3509556",
       "group": "SKY",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/sky/tv8.png",
@@ -11,6 +13,7 @@
     },
     {
       "name": "Cielo",
+      "epgId": "cielo",
       "url": "https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11219/cieloweb/master.m3u8?hdnts=st=1764666351~exp=1829466206~acl=/*~hmac=b0e9165b6c55027903ad103c8219f363d8765eb300c0d9a339e9767fc3509556",
       "group": "SKY",
       "logoURL": "https://lorenzoconcas.github.io/products/minitv/logos/sky/cielo.png",
